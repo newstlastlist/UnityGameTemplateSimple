@@ -9,6 +9,7 @@ namespace App
         [SerializeField] private GameObject _mainMenuPanel;
         [SerializeField] private GameObject _gamePanel;
         [SerializeField] private GameObject _winPanel;
+        [SerializeField] private GameObject _settingsPanel;
 
         private readonly Dictionary<ScreenId, GameObject> _panelsById = new Dictionary<ScreenId, GameObject>();
 
@@ -32,6 +33,7 @@ namespace App
             SetActiveForPanel(ScreenId.Main, id == ScreenId.Main);
             SetActiveForPanel(ScreenId.Game, id == ScreenId.Game);
             SetActiveForPanel(ScreenId.Win,  id == ScreenId.Win);
+            SetActiveForPanel(ScreenId.Settings,  id == ScreenId.Settings);
 
             OnScreenShown?.Invoke(id);
         }
@@ -107,6 +109,11 @@ namespace App
             {
                 _panelsById[ScreenId.Win] = _winPanel;
             }
+
+            if (_settingsPanel != null)
+            {
+                _panelsById[ScreenId.Settings] = _settingsPanel;
+            }
         }
     }
 
@@ -114,7 +121,9 @@ namespace App
     {
         Main,
         Game,
-        Win
+        Win,
+        Settings
     }
+
 
 }
