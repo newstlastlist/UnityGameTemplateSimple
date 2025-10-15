@@ -85,6 +85,9 @@ namespace App
             _popupService = new PopupService(_popupController);
             _serviceRegistry.Register<IPopupService>(_popupService);
 
+            // Mock repositories
+            _serviceRegistry.Register<ILevelRepository>(new MockLevelRepository());
+
             var mainMenuView = _screenController.GetViewOnPanel<MainMenuView>(ScreenId.Main);
             var gameView = _screenController.GetViewOnPanel<GameView>(ScreenId.Game);
             var winView = _screenController.GetViewOnPanel<WinView>(ScreenId.Win);
