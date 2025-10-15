@@ -9,6 +9,11 @@ namespace Shared
             _provider = provider;
         }
 
+        public static void Register<T>(T service) where T : class
+        {
+            _provider.Register(service);
+        }
+
         public static T Get<T>() where T : class
         {
             return _provider.Resolve<T>();

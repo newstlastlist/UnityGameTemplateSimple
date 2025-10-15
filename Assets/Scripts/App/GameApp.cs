@@ -1,9 +1,12 @@
 using Infrastructure;
+using System.Collections;
+using System.Threading.Tasks;
 using Domain;
 using Domain.Audio;
 using Infrastructure.Audio;
 using Infrastructure.Resources;
 using UI.Popup;
+using UI.Loading;
 using Shared;
 using UI.Game;
 using UI.MainMenu;
@@ -11,15 +14,25 @@ using UI.Settings;
 using UI.Win;
 using UnityEngine;
 using AudioSettings = Domain.Audio.AudioSettings;
+using Infrastructure.Settings;
+using Domain.Project;
 using SettingsPresenter = UI.Settings.SettingsPresenter;
 
 namespace App
 {
     public sealed class GameApp : MonoBehaviour
     {
+        [Header("Core Controllers")]
         [SerializeField] private ScreenController _screenController;
         [SerializeField] private AudioDatabase _audioDatabase;
         [SerializeField] private PopupController _popupController;
+
+        [Header("Loading Screen")] 
+        [SerializeField] private Transform _loadingUiRoot;
+        [SerializeField] private PrefabFakeReference _loadingScreenPrefab;
+
+		[Header("Project Settings")]
+		[SerializeField] private ProjectSettings _projectSettings;
 
         private ServiceRegistry _serviceRegistry;
         private PlayerPrefsAudioSettingsService _audioSettingsStorage;
@@ -29,19 +42,38 @@ namespace App
         private WinPresenter _winPresenter;
         private UI.Settings.SettingsPresenter _settingsPresenter;
         private IPopupService _popupService;
+        private TaskCompletionSource<bool> _startupGate;
+        private IProjectSettingsService _projectSettingsService;
 
         private void Awake()
         {
             Application.targetFrameRate = 60;
 
             _serviceRegistry = new ServiceRegistry();
+            
             Services.SetProvider(_serviceRegistry);
+            var resourceService = new UnityResourceService();
+            _serviceRegistry.Register<IResourceService>(resourceService);
 
+			// Project Settings service
+			var projectSettingsService = new ProjectSettingsService(_projectSettings);
+			_serviceRegistry.Register<IProjectSettingsService>(projectSettingsService);
+
+            // Loading
+            string loadingPath = _loadingScreenPrefab != null ? _loadingScreenPrefab.GetResourcesRelativePath() : null;
+            var loadingService = new LoadingService(resourceService, loadingPath, _loadingUiRoot);
+            _serviceRegistry.Register<ILoadingService>(loadingService);
+			// Показать загрузку на старте минимум N секунд (из ProjectSettings) и закрыть только после EndOfFrame
+            _startupGate = new TaskCompletionSource<bool>();
+            _projectSettingsService = Services.Get<IProjectSettingsService>();
+            _ = Services.Get<ILoadingService>().RunUntil(_startupGate.Task, _projectSettingsService.StartupLoadingMinSeconds);
+            
             var progressService = new PlayerPrefsProgressService();
             progressService.Load();
 
             _serviceRegistry.Register<IProgressService>(progressService);
             _serviceRegistry.Register<IScreenNavigator>(new ScreenNavigatorService(_screenController));
+            
 
             _audioSettingsStorage = new PlayerPrefsAudioSettingsService();
             AudioSettings audioSettings = _audioSettingsStorage.Load();
@@ -49,8 +81,6 @@ namespace App
             var audioService = new UnityAudioService(_audioDatabase);
             audioService.Initialize(audioSettings, null);
             _serviceRegistry.Register<IAudioService>(audioService);
-            
-            _serviceRegistry.Register<IResourceService>(new UnityResourceService());
 
             _popupService = new PopupService(_popupController);
             _serviceRegistry.Register<IPopupService>(_popupService);
@@ -68,6 +98,11 @@ namespace App
             _screenController.OnScreenShown += OnScreenShown;
 
             _screenController.Show(ScreenId.Main);
+        }
+
+        private void Start()
+        {
+            StartCoroutine(CompleteStartupGateAtEndOfFrame());
         }
 
         private void OnDestroy()
@@ -116,6 +151,15 @@ namespace App
                 case ScreenId.Settings:
                     _settingsPresenter.Open();
                     break;
+            }
+        }
+
+        private IEnumerator CompleteStartupGateAtEndOfFrame()
+        {
+            yield return new WaitForEndOfFrame();
+            if (_startupGate != null && !_startupGate.Task.IsCompleted)
+            {
+                _startupGate.SetResult(true);
             }
         }
     }
