@@ -1,0 +1,20 @@
+Level: 62
+Scheme: LevelScheme7 (#7)
+Seed: -736644991
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 15..21 (inclusive)
+LastAttemptsUsed: 1
+
+---- How To Complete Level ----
+Попыток: 1/500
+Решаемых раскладок найдено: 1
+Целевой диапазон ходов: 15..21 (включительно)
+Остановка по попаданию в диапазон.
+Количество ходов: 16
+Статус: В ДИАПАЗОНЕ
+6 -> 7 -> 1 -> 7 -> 1 -> 6 -> 5 -> 1 -> 4 -> 5 -> 4 -> 1 -> 2 -> 4 -> 3 -> 4 -> 3 -> 6 -> 5 -> 3 -> 2 -> 5 -> 4 -> 2 -> 1 -> 4 -> 5 -> 1 -> 6 -> 5 -> 7 -> 6

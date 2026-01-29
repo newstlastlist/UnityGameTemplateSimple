@@ -1,0 +1,20 @@
+Level: 49
+Scheme: LevelScheme4 (#4)
+Seed: 1844571504
+Words %: Word100
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 15..21 (inclusive)
+LastAttemptsUsed: 428
+
+---- How To Complete Level ----
+Попыток: 428/500
+Решаемых раскладок найдено: 427
+Целевой диапазон ходов: 15..21 (включительно)
+Остановка по таймауту: 10 сек.
+Количество ходов: 11
+Статус: ВНЕ ДИАПАЗОНА (ближайший найденный вариант)
+1 -> 5 -> 1 -> 6 -> 4 -> 5 -> 1 -> 4 -> 2 -> 1 -> 3 -> 1 -> 2 -> 3 -> 1 -> 2 -> 3 -> 6 -> 4 -> 3 -> 5 -> 4

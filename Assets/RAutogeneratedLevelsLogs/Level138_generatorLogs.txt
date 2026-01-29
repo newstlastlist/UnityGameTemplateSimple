@@ -1,0 +1,18 @@
+Level: 138
+Scheme: LevelScheme8 (#8)
+Seed: -1067262927
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 7/150
+Решаемых раскладок найдено: 1
+Количество ходов: 19
+Статус: В ДИАПАЗОНЕ
+3 -> 8 -> 7 -> 8 -> 1 -> 7 -> 5 -> 1 -> 5 -> 8 -> 7 -> 5 -> 7 -> 3 -> 8 -> 7 -> 5 -> 8 -> 1 -> 5 -> 4 -> 8 -> 3 -> 1 -> 4 -> 3 -> 6 -> 4 -> 2 -> 6 -> 2 -> 1
+ -> 2 -> 3 -> 4 -> 2 -> 6 -> 4

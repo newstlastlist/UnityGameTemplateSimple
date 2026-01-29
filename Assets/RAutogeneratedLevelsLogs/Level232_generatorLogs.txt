@@ -1,0 +1,17 @@
+Level: 232
+Scheme: LevelScheme5 (#5)
+Seed: 750935566
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 4/150
+Решаемых раскладок найдено: 1
+Количество ходов: 13
+Статус: В ДИАПАЗОНЕ
+1 -> 6 -> 2 -> 6 -> 5 -> 2 -> 3 -> 6 -> 3 -> 7 -> 3 -> 5 -> 4 -> 6 -> 4 -> 7 -> 2 -> 4 -> 1 -> 2 -> 5 -> 1 -> 5 -> 2 -> 1 -> 5

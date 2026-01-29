@@ -1,0 +1,20 @@
+Level: 32
+Scheme: LevelScheme7 (#7)
+Seed: 2127480543
+Words %: Word75
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 12..21 (inclusive)
+LastAttemptsUsed: 1
+
+---- How To Complete Level ----
+Попыток: 1/500
+Решаемых раскладок найдено: 1
+Целевой диапазон ходов: 12..21 (включительно)
+Остановка по попаданию в диапазон.
+Количество ходов: 15
+Статус: В ДИАПАЗОНЕ
+5 -> 7 -> 1 -> 5 -> 4 -> 7 -> 6 -> 4 -> 6 -> 7 -> 4 -> 6 -> 1 -> 4 -> 1 -> 5 -> 4 -> 1 -> 5 -> 4 -> 3 -> 4 -> 3 -> 5 -> 2 -> 3 -> 2 -> 5 -> 3 -> 2

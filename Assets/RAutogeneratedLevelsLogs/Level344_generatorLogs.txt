@@ -1,0 +1,17 @@
+Level: 344
+Scheme: LevelScheme19 (#19)
+Seed: 1046538749
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 15/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+2 -> 7 -> 5 -> 8 -> 3 -> 5 -> 3 -> 2 -> 4 -> 3 -> 4 -> 5 -> 6 -> 3 -> 6 -> 8 -> 4 -> 6 -> 1 -> 6 -> 1 -> 7 -> 2 -> 1

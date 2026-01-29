@@ -1,0 +1,17 @@
+Level: 271
+Scheme: LevelScheme18 (#18)
+Seed: 657326702
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 53
+Количество ходов: 14
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+3 -> 5 -> 2 -> 3 -> 4 -> 2 -> 2 -> 5 -> 7 -> 2 -> 4 -> 7 -> 3 -> 4 -> 2 -> 3 -> 7 -> 2 -> 1 -> 2 -> 1 -> 7 -> 6 -> 1 -> 6 -> 7 -> 1 -> 6

@@ -1,0 +1,17 @@
+Level: 371
+Scheme: LevelScheme19 (#19)
+Seed: 824129444
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 30/150
+Решаемых раскладок найдено: 4
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+2 -> 7 -> 1 -> 8 -> 5 -> 7 -> 3 -> 5 -> 3 -> 1 -> 4 -> 8 -> 6 -> 8 -> 4 -> 6 -> 6 -> 2 -> 5 -> 6 -> 3 -> 4 -> 4 -> 5

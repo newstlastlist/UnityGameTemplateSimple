@@ -1,0 +1,17 @@
+Level: 184
+Scheme: LevelScheme5 (#5)
+Seed: 437465715
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 6/150
+Решаемых раскладок найдено: 1
+Количество ходов: 14
+Статус: В ДИАПАЗОНЕ
+1 -> 6 -> 4 -> 1 -> 2 -> 6 -> 2 -> 4 -> 2 -> 6 -> 1 -> 2 -> 5 -> 1 -> 5 -> 7 -> 4 -> 5 -> 3 -> 5 -> 3 -> 7 -> 6 -> 3 -> 4 -> 2 -> 1 -> 4

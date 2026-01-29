@@ -50,8 +50,10 @@ namespace UI.Popup.PrivacySettingsPopup
                     audioService.SetSfxVolume(1f);
                 }
 
-                PlayerPrefs.DeleteAll();
-                PlayerPrefs.Save();
+                if (Services.TryGet<IProgressService>(out var progressTools))
+                {
+                    progressTools.ClearAllPersistedData();
+                }
             }
             catch (Exception)
             {

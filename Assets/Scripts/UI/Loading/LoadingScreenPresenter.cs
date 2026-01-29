@@ -11,7 +11,7 @@ namespace UI.Loading
         private CancellationTokenSource _cts;
 
         private const float MaxDisplayedProgressBeforeReady = 0.95f;
-        private const float MinimumVisibleSeconds = 2f;
+        private const float FallbackMinimumVisibleSeconds = 0.25f;
 
         public LoadingScreenPresenter(LoadingScreenView view)
         {
@@ -34,8 +34,11 @@ namespace UI.Loading
             _cts = new CancellationTokenSource();
             CancellationToken token = _cts.Token;
 
-            _view.SetProgress(0f);
             _view.Show();
+            if (_view.IsProgressBarEnabled)
+            {
+                _view.SetProgress(0f);
+            }
 
             var displayedProgress = 0f;
             var timeProgress = 0f;
@@ -57,16 +60,19 @@ namespace UI.Loading
                 }
 
                 float elapsed = Time.realtimeSinceStartup - startTime;
-                timeProgress = Mathf.Clamp01(elapsed / MinimumVisibleSeconds) * MaxDisplayedProgressBeforeReady;
+                timeProgress = Mathf.Clamp01(elapsed / FallbackMinimumVisibleSeconds) * MaxDisplayedProgressBeforeReady;
 
                 float mappedReal = Mathf.Clamp01(realProgress / 0.9f) * MaxDisplayedProgressBeforeReady;
                 float target = Mathf.Max(timeProgress, mappedReal);
 
                 // Smooth step towards target
                 displayedProgress = Mathf.MoveTowards(displayedProgress, target, Time.unscaledDeltaTime);
-                _view.SetProgress(displayedProgress);
+                if (_view.IsProgressBarEnabled)
+                {
+                    _view.SetProgress(displayedProgress);
+                }
 
-                bool minimumTimePassed = elapsed >= MinimumVisibleSeconds;
+                bool minimumTimePassed = elapsed >= FallbackMinimumVisibleSeconds;
                 if (minimumTimePassed && loadTask.IsCompleted)
                 {
                     break;
@@ -83,7 +89,10 @@ namespace UI.Loading
                     return;
                 }
                 displayedProgress = Mathf.MoveTowards(displayedProgress, 1f, Time.unscaledDeltaTime * 2f);
-                _view.SetProgress(displayedProgress);
+                if (_view.IsProgressBarEnabled)
+                {
+                    _view.SetProgress(displayedProgress);
+                }
                 await Task.Yield();
             }
 
@@ -96,10 +105,13 @@ namespace UI.Loading
             _cts = new CancellationTokenSource();
             CancellationToken token = _cts.Token;
 
-            float minSeconds = Mathf.Max(minimumSeconds, MinimumVisibleSeconds);
+            float minSeconds = Mathf.Max(minimumSeconds, 0f);
 
-            _view.SetProgress(0f);
             _view.Show();
+            if (_view.IsProgressBarEnabled)
+            {
+                _view.SetProgress(0f);
+            }
 
             float displayedProgress = 0f;
             float timeProgress = 0f;
@@ -114,11 +126,15 @@ namespace UI.Loading
                 }
 
                 float elapsed = Time.realtimeSinceStartup - startTime;
-                timeProgress = Mathf.Clamp01(elapsed / minSeconds) * MaxDisplayedProgressBeforeReady;
+                float safeMinSeconds = Mathf.Max(0.01f, minSeconds);
+                timeProgress = Mathf.Clamp01(elapsed / safeMinSeconds) * MaxDisplayedProgressBeforeReady;
                 float target = timeProgress; // ignore operation until minimum time
 
                 displayedProgress = Mathf.MoveTowards(displayedProgress, target, Time.unscaledDeltaTime);
-                _view.SetProgress(displayedProgress);
+                if (_view.IsProgressBarEnabled)
+                {
+                    _view.SetProgress(displayedProgress);
+                }
 
                 bool minimumTimePassed = elapsed >= minSeconds;
                 if (minimumTimePassed)
@@ -137,7 +153,10 @@ namespace UI.Loading
                     return;
                 }
                 displayedProgress = Mathf.MoveTowards(displayedProgress, MaxDisplayedProgressBeforeReady, Time.unscaledDeltaTime);
-                _view.SetProgress(displayedProgress);
+                if (_view.IsProgressBarEnabled)
+                {
+                    _view.SetProgress(displayedProgress);
+                }
                 await Task.Yield();
             }
 
@@ -149,7 +168,10 @@ namespace UI.Loading
                     return;
                 }
                 displayedProgress = Mathf.MoveTowards(displayedProgress, 1f, Time.unscaledDeltaTime * 2f);
-                _view.SetProgress(displayedProgress);
+                if (_view.IsProgressBarEnabled)
+                {
+                    _view.SetProgress(displayedProgress);
+                }
                 await Task.Yield();
             }
 
@@ -162,10 +184,13 @@ namespace UI.Loading
             _cts = new CancellationTokenSource();
             CancellationToken token = _cts.Token;
 
-            float minSeconds = Mathf.Max(minimumSeconds, MinimumVisibleSeconds);
+            float minSeconds = Mathf.Max(minimumSeconds, 0f);
 
-            _view.SetProgress(0f);
             _view.Show();
+            if (_view.IsProgressBarEnabled)
+            {
+                _view.SetProgress(0f);
+            }
 
             float displayedProgress = 0f;
             float startTime = Time.realtimeSinceStartup;
@@ -179,9 +204,13 @@ namespace UI.Loading
                 }
 
                 float elapsed = Time.realtimeSinceStartup - startTime;
-                float target = Mathf.Clamp01(elapsed / minSeconds) * MaxDisplayedProgressBeforeReady;
+                float safeMinSeconds = Mathf.Max(0.01f, minSeconds);
+                float target = Mathf.Clamp01(elapsed / safeMinSeconds) * MaxDisplayedProgressBeforeReady;
                 displayedProgress = Mathf.MoveTowards(displayedProgress, target, Time.unscaledDeltaTime);
-                _view.SetProgress(displayedProgress);
+                if (_view.IsProgressBarEnabled)
+                {
+                    _view.SetProgress(displayedProgress);
+                }
 
                 if (elapsed >= minSeconds)
                 {
@@ -201,7 +230,10 @@ namespace UI.Loading
                 float mapped = Mathf.Clamp01((operation.progress) / 0.9f); // 0..1
                 float target = MaxDisplayedProgressBeforeReady + mapped * (1f - MaxDisplayedProgressBeforeReady);
                 displayedProgress = Mathf.MoveTowards(displayedProgress, target, Time.unscaledDeltaTime);
-                _view.SetProgress(displayedProgress);
+                if (_view.IsProgressBarEnabled)
+                {
+                    _view.SetProgress(displayedProgress);
+                }
                 await Task.Yield();
             }
 
@@ -212,7 +244,10 @@ namespace UI.Loading
                     return;
                 }
                 displayedProgress = Mathf.MoveTowards(displayedProgress, 1f, Time.unscaledDeltaTime * 2f);
-                _view.SetProgress(displayedProgress);
+                if (_view.IsProgressBarEnabled)
+                {
+                    _view.SetProgress(displayedProgress);
+                }
                 await Task.Yield();
             }
 

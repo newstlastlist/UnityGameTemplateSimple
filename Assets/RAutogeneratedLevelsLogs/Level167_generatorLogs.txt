@@ -1,0 +1,18 @@
+Level: 167
+Scheme: LevelScheme17 (#17)
+Seed: 807705718
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 7/150
+Решаемых раскладок найдено: 2
+Количество ходов: 19
+Статус: В ДИАПАЗОНЕ
+7 -> 8 -> 6 -> 7 -> 4 -> 6 -> 2 -> 4 -> 5 -> 8 -> 2 -> 5 -> 8 -> 2 -> 7 -> 8 -> 3 -> 8 -> 7 -> 3 -> 5 -> 7 -> 1 -> 5 -> 1 -> 7 -> 1 -> 5 -> 6 -> 1 -> 5 -> 6
+ -> 3 -> 5 -> 3 -> 1 -> 5 -> 3

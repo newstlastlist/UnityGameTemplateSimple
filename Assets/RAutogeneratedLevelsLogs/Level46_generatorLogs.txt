@@ -1,0 +1,20 @@
+Level: 46
+Scheme: LevelScheme16 (#16)
+Seed: 110331151
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 15..18 (inclusive)
+LastAttemptsUsed: 96
+
+---- How To Complete Level ----
+Попыток: 96/500
+Решаемых раскладок найдено: 95
+Целевой диапазон ходов: 15..18 (включительно)
+Остановка по таймауту: 10 сек.
+Количество ходов: 13
+Статус: ВНЕ ДИАПАЗОНА (ближайший найденный вариант)
+1 -> 5 -> 1 -> 6 -> 1 -> 5 -> 4 -> 1 -> 2 -> 5 -> 7 -> 4 -> 4 -> 6 -> 3 -> 7 -> 2 -> 3 -> 3 -> 1 -> 7 -> 2 -> 3 -> 4 -> 4 -> 7

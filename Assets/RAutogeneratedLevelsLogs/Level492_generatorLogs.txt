@@ -1,0 +1,17 @@
+Level: 492
+Scheme: LevelScheme16 (#16)
+Seed: 1066945151
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 10/150
+Решаемых раскладок найдено: 10
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 5 -> 2 -> 6 -> 4 -> 1 -> 7 -> 2 -> 4 -> 7 -> 7 -> 6 -> 4 -> 5 -> 2 -> 4 -> 3 -> 5 -> 3 -> 4 -> 2 -> 3 -> 3 -> 7

@@ -70,7 +70,9 @@ namespace UI.Settings
 
         private void OnCloseClickedHandler()
         {
-            _screenNavigator.Show(ScreenId.Main);
+            // Settings — оверлей: просто скрываем панель, не меняя текущий экран (Game/Main).
+            _view.Show(false);
+            Close();
         }
     }
 }

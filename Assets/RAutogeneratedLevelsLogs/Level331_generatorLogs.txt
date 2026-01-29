@@ -1,0 +1,17 @@
+Level: 331
+Scheme: LevelScheme14 (#14)
+Seed: 584788020
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 33
+Количество ходов: 15
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+1 -> 6 -> 2 -> 6 -> 5 -> 6 -> 7 -> 2 -> 5 -> 7 -> 5 -> 1 -> 7 -> 5 -> 2 -> 7 -> 3 -> 2 -> 4 -> 5 -> 4 -> 3 -> 8 -> 4 -> 8 -> 3 -> 1 -> 8 -> 4 -> 1

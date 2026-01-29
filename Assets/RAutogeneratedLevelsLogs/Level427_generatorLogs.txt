@@ -1,0 +1,17 @@
+Level: 427
+Scheme: LevelScheme5 (#5)
+Seed: 559968456
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 12/150
+Решаемых раскладок найдено: 1
+Количество ходов: 13
+Статус: В ДИАПАЗОНЕ
+4 -> 6 -> 2 -> 7 -> 3 -> 2 -> 5 -> 6 -> 1 -> 5 -> 4 -> 1 -> 6 -> 4 -> 3 -> 7 -> 2 -> 3 -> 2 -> 7 -> 5 -> 2 -> 5 -> 7 -> 2 -> 5

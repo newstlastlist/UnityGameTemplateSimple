@@ -1,0 +1,20 @@
+Level: 6
+Scheme: LevelScheme10 (#10)
+Seed: 1365246769
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 10..18 (inclusive)
+LastAttemptsUsed: 5
+
+---- How To Complete Level ----
+Попыток: 5/500
+Решаемых раскладок найдено: 1
+Целевой диапазон ходов: 10..18 (включительно)
+Остановка по попаданию в диапазон.
+Количество ходов: 15
+Статус: В ДИАПАЗОНЕ
+5 -> 6 -> 1 -> 5 -> 1 -> 6 -> 2 -> 1 -> 4 -> 2 -> 4 -> 6 -> 5 -> 4 -> 3 -> 5 -> 3 -> 1 -> 2 -> 3 -> 2 -> 5 -> 4 -> 2 -> 1 -> 4 -> 3 -> 1 -> 6 -> 3

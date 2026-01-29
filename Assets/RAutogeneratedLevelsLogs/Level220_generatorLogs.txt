@@ -1,0 +1,17 @@
+Level: 220
+Scheme: LevelScheme5 (#5)
+Seed: 613737407
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 36/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+2 -> 6 -> 5 -> 7 -> 1 -> 6 -> 4 -> 1 -> 1 -> 7 -> 1 -> 2 -> 1 -> 4 -> 3 -> 5 -> 3 -> 6 -> 3 -> 2 -> 4 -> 3 -> 5 -> 4

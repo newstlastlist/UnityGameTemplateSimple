@@ -2,6 +2,6 @@ namespace App
 {
     public interface IScreenNavigator
     {
-        void Show(ScreenId id);
+        void Show(PanelType id);
     }
 }

@@ -1,0 +1,21 @@
+Level: 33
+Scheme: LevelScheme12 (#12)
+Seed: 305973552
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 18..21 (inclusive)
+LastAttemptsUsed: 4
+
+---- How To Complete Level ----
+Попыток: 4/500
+Решаемых раскладок найдено: 4
+Целевой диапазон ходов: 18..21 (включительно)
+Остановка по попаданию в диапазон.
+Количество ходов: 18
+Статус: В ДИАПАЗОНЕ
+1 -> 7 -> 4 -> 6 -> 5 -> 6 -> 1 -> 5 -> 3 -> 1 -> 3 -> 4 -> 3 -> 6 -> 1 -> 3 -> 5 -> 1 -> 4 -> 5 -> 4 -> 6 -> 2 -> 1 -> 4 -> 2 -> 7 -> 4 -> 5 -> 4 -> 2 -> 5
+ -> 2 -> 1 -> 5 -> 2

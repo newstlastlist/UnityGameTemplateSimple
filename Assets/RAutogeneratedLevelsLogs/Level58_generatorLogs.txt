@@ -1,0 +1,20 @@
+Level: 58
+Scheme: LevelScheme18 (#18)
+Seed: 554256315
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 14..18 (inclusive)
+LastAttemptsUsed: 5
+
+---- How To Complete Level ----
+Попыток: 5/500
+Решаемых раскладок найдено: 2
+Целевой диапазон ходов: 14..18 (включительно)
+Остановка по попаданию в диапазон.
+Количество ходов: 14
+Статус: В ДИАПАЗОНЕ
+2 -> 5 -> 7 -> 2 -> 4 -> 5 -> 6 -> 4 -> 3 -> 6 -> 3 -> 7 -> 2 -> 3 -> 6 -> 2 -> 5 -> 6 -> 4 -> 5 -> 7 -> 4 -> 1 -> 7 -> 1 -> 5 -> 7 -> 1

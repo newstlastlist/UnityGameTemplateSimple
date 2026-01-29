@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: b44a2959bb2c42f46b472fcd887ab834
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 3
+  iconMap: {}
+  executionOrder: {}
+  defineConstraints: []
+  isPreloaded: 0
+  isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+  platformData:
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 43800
+  packageName: Lunar Mobile Console - PRO
+  packageVersion: 1.9.0
+  assetPath: Assets/LunarConsole/Editor/iOS/Common/Utils/LUSerializableObject.h
+  uploadId: 731194

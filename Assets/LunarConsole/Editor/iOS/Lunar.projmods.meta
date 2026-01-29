@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3579113259641ae43a9d45d5c48dec7e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 43800
+  packageName: Lunar Mobile Console - PRO
+  packageVersion: 1.9.0
+  assetPath: Assets/LunarConsole/Editor/iOS/Lunar.projmods
+  uploadId: 731194

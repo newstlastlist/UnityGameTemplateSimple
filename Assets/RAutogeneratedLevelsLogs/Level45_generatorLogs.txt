@@ -1,0 +1,20 @@
+Level: 45
+Scheme: LevelScheme14 (#14)
+Seed: 530264482
+Words %: Word25
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 20..21 (inclusive)
+LastAttemptsUsed: 500
+
+---- How To Complete Level ----
+Попыток: 500/500
+Решаемых раскладок найдено: 103
+Целевой диапазон ходов: 20..21 (включительно)
+Количество ходов: 17
+Статус: ВНЕ ДИАПАЗОНА (ближайший найденный вариант)
+1 -> 6 -> 7 -> 1 -> 4 -> 7 -> 3 -> 4 -> 4 -> 6 -> 4 -> 3 -> 5 -> 4 -> 8 -> 4 -> 8 -> 5 -> 4 -> 8 -> 7 -> 4 -> 2 -> 7 -> 2 -> 4 -> 5 -> 2 -> 1 -> 5 -> 3 -> 1
+ -> 7 -> 3

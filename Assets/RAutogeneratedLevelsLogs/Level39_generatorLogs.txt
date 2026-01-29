@@ -1,0 +1,21 @@
+Level: 39
+Scheme: LevelScheme8 (#8)
+Seed: -1142673523
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 15..18 (inclusive)
+LastAttemptsUsed: 14
+
+---- How To Complete Level ----
+Попыток: 14/500
+Решаемых раскладок найдено: 1
+Целевой диапазон ходов: 15..18 (включительно)
+Остановка по попаданию в диапазон.
+Количество ходов: 18
+Статус: В ДИАПАЗОНЕ
+3 -> 8 -> 4 -> 3 -> 6 -> 3 -> 7 -> 8 -> 7 -> 4 -> 1 -> 7 -> 1 -> 6 -> 2 -> 7 -> 2 -> 8 -> 5 -> 2 -> 1 -> 5 -> 7 -> 1 -> 4 -> 7 -> 2 -> 4 -> 6 -> 2 -> 6 -> 4
+ -> 3 -> 6 -> 2 -> 3

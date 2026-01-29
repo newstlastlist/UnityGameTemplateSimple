@@ -1,0 +1,20 @@
+Level: 36
+Scheme: LevelScheme19 (#19)
+Seed: 1559148275
+Words %: Word75
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 18..21 (inclusive)
+LastAttemptsUsed: 39
+
+---- How To Complete Level ----
+Попыток: 39/500
+Решаемых раскладок найдено: 2
+Целевой диапазон ходов: 18..21 (включительно)
+Остановка по таймауту: 10 сек.
+Количество ходов: 11
+Статус: ВНЕ ДИАПАЗОНА (ближайший найденный вариант)
+2 -> 7 -> 4 -> 2 -> 3 -> 4 -> 6 -> 7 -> 1 -> 6 -> 5 -> 1 -> 3 -> 5 -> 6 -> 3 -> 4 -> 6 -> 1 -> 4 -> 7 -> 1

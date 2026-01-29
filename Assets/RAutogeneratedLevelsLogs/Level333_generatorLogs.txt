@@ -1,0 +1,17 @@
+Level: 333
+Scheme: LevelScheme18 (#18)
+Seed: 578899263
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 43
+Количество ходов: 13
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+2 -> 5 -> 7 -> 2 -> 3 -> 7 -> 1 -> 3 -> 1 -> 5 -> 6 -> 1 -> 6 -> 5 -> 2 -> 6 -> 3 -> 2 -> 1 -> 3 -> 7 -> 1 -> 4 -> 1 -> 4 -> 7

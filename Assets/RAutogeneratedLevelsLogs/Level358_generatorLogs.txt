@@ -1,0 +1,17 @@
+Level: 358
+Scheme: LevelScheme16 (#16)
+Seed: 799744639
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 11/150
+Решаемых раскладок найдено: 11
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+2 -> 5 -> 2 -> 6 -> 1 -> 2 -> 1 -> 6 -> 3 -> 5 -> 3 -> 2 -> 7 -> 5 -> 3 -> 7 -> 4 -> 1 -> 4 -> 6 -> 7 -> 4 -> 1 -> 7

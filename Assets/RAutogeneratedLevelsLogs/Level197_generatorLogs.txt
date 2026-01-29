@@ -1,0 +1,18 @@
+Level: 197
+Scheme: LevelScheme17 (#17)
+Seed: -494045982
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 43/150
+Решаемых раскладок найдено: 2
+Количество ходов: 20
+Статус: В ДИАПАЗОНЕ
+5 -> 8 -> 6 -> 8 -> 1 -> 6 -> 1 -> 5 -> 8 -> 1 -> 6 -> 8 -> 2 -> 6 -> 4 -> 2 -> 7 -> 6 -> 7 -> 4 -> 3 -> 7 -> 7 -> 8 -> 4 -> 7 -> 3 -> 7 -> 5 -> 3 -> 4 -> 5
+ -> 1 -> 4 -> 2 -> 1 -> 5 -> 2 -> 1 -> 5

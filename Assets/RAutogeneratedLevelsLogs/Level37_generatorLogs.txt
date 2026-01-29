@@ -1,0 +1,19 @@
+Level: 37
+Scheme: LevelScheme2 (#2)
+Seed: -1017021550
+Words %: Word75
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 15..21 (inclusive)
+LastAttemptsUsed: 500
+
+---- How To Complete Level ----
+Попыток: 500/500
+Решаемых раскладок найдено: 500
+Целевой диапазон ходов: 15..21 (включительно)
+Количество ходов: 11
+Статус: ВНЕ ДИАПАЗОНА (ближайший найденный вариант)
+1 -> 4 -> 1 -> 5 -> 1 -> 4 -> 2 -> 1 -> 3 -> 1 -> 2 -> 3 -> 2 -> 1 -> 4 -> 2 -> 3 -> 5 -> 3 -> 2 -> 5 -> 3

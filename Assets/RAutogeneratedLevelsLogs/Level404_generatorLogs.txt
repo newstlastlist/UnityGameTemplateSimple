@@ -1,0 +1,17 @@
+Level: 404
+Scheme: LevelScheme19 (#19)
+Seed: -545428884
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 35/150
+Решаемых раскладок найдено: 4
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 7 -> 2 -> 8 -> 4 -> 1 -> 4 -> 2 -> 1 -> 4 -> 3 -> 1 -> 5 -> 1 -> 6 -> 5 -> 5 -> 8 -> 3 -> 6 -> 3 -> 5 -> 5 -> 7

@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 2007798dbc7d0504e81eda604a5f450d
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 3
+  iconMap: {}
+  executionOrder: {}
+  defineConstraints: []
+  isPreloaded: 0
+  isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+  platformData:
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 43800
+  packageName: Lunar Mobile Console - PRO
+  packageVersion: 1.9.0
+  assetPath: Assets/LunarConsole/Editor/iOS/Full/Controllers/Actions/LUActionTableViewCell.h
+  uploadId: 731194

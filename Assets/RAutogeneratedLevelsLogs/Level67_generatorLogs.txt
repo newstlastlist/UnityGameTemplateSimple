@@ -1,0 +1,17 @@
+Level: 67
+Scheme: LevelScheme5 (#5)
+Seed: 2048470376
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 1/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 6 -> 5 -> 7 -> 4 -> 6 -> 1 -> 7 -> 2 -> 5 -> 3 -> 5 -> 2 -> 3 -> 3 -> 4 -> 4 -> 1 -> 3 -> 7 -> 2 -> 3 -> 3 -> 4

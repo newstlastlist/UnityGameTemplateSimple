@@ -1,0 +1,17 @@
+Level: 419
+Scheme: LevelScheme20 (#20)
+Seed: -458521627
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 119
+Количество ходов: 7
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+3 -> 4 -> 1 -> 3 -> 1 -> 4 -> 3 -> 1 -> 2 -> 3 -> 2 -> 4 -> 3 -> 2

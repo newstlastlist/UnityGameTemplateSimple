@@ -1,0 +1,17 @@
+Level: 491
+Scheme: LevelScheme20 (#20)
+Seed: 1288400898
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 108
+Количество ходов: 6
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+2 -> 4 -> 1 -> 2 -> 3 -> 1 -> 1 -> 4 -> 1 -> 2 -> 3 -> 1

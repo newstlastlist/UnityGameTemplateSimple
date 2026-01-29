@@ -1,6 +1,8 @@
 using System;
 using App;
+using Cysharp.Threading.Tasks;
 using Infrastructure;
+using Infrastructure.SceneManagement;
 using Shared;
 
 namespace UI.MainMenu
@@ -8,31 +10,54 @@ namespace UI.MainMenu
     public sealed class MainMenuPresenter
     {
         private readonly MainMenuView _view;
-        private readonly ILevelRepository _levelRepository;
-        private readonly IProgressService _progressService;
-        private readonly IScreenNavigator _screenNavigator;
+        private readonly ISceneTransitionService _sceneTransitions;
 
-        public MainMenuPresenter(MainMenuView view)
+        public MainMenuPresenter(MainMenuView view, ISceneTransitionService sceneTransitions)
         {
-            _view = view ?? throw new ArgumentNullException(nameof(view));
-            _levelRepository = Services.Get<ILevelRepository>();
-            _progressService = Services.Get<IProgressService>();
-            _screenNavigator = Services.Get<IScreenNavigator>();
+            _view = view;
+            _sceneTransitions = sceneTransitions;
         }
 
-        public void Open()
+        public void Initialize()
         {
-            _view.OnPlayClicked += OnPlayClickedHandler;
+            int levelNumber = ResolveLevelNumber();
+            _view.Initialize(OnPlayClicked, levelNumber);
         }
 
-        public void Close()
+        private int ResolveLevelNumber()
         {
-            _view.OnPlayClicked -= OnPlayClickedHandler;
+            // Используем PlayerPrefsProgressService, чтобы показать следующий уровень после последнего пройденного
+            PlayerPrefsProgressService progress = new PlayerPrefsProgressService();
+            progress.Load();
+
+            int value = progress.LastCompletedLevelIndex + 2; // -1 -> 1, 0 -> 2 и т.д.
+            return value < 1 ? 1 : value;
         }
 
-        private void OnPlayClickedHandler()
+        private void OnPlayClicked()
         {
-            _screenNavigator.Show(ScreenId.Game);
+            // Прячем UI главного меню, чтобы он не перекрывал сплэш
+            if (_view != null)
+            {
+                _view.gameObject.SetActive(false);
+            }
+
+            // int levelNumber = ResolveLevelNumber();
+            // bool isSecondLevelOrAbove = levelNumber >= 2;
+            //
+            // if (isSecondLevelOrAbove && Services.TryGet<AppLovinMaxAdService>(out var adService))
+            // {
+            //     bool shown = adService.TryShowGeneralInterstitial(
+            //         onClosed: () => _sceneTransitions?.LoadMainWithSplashAsync().Forget());
+            //
+            //     if (shown)
+            //     {
+            //         return;
+            //     }
+            // }
+
+            // Если интер не показан (кулдаун/нет готового), просто переходим в игру.
+            _sceneTransitions?.LoadMainWithSplashAsync().Forget();
         }
     }
 }

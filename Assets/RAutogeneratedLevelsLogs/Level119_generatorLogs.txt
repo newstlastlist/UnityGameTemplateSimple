@@ -1,0 +1,17 @@
+Level: 119
+Scheme: LevelScheme6 (#6)
+Seed: -31088200
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 1/150
+Решаемых раскладок найдено: 1
+Количество ходов: 14
+Статус: В ДИАПАЗОНЕ
+1 -> 6 -> 5 -> 6 -> 2 -> 5 -> 3 -> 2 -> 4 -> 3 -> 4 -> 6 -> 5 -> 4 -> 5 -> 1 -> 4 -> 5 -> 2 -> 4 -> 1 -> 2 -> 1 -> 4 -> 3 -> 1 -> 6 -> 3

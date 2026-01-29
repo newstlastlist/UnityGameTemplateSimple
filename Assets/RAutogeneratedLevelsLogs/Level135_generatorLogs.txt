@@ -1,0 +1,17 @@
+Level: 135
+Scheme: LevelScheme18 (#18)
+Seed: -623871480
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 53
+Количество ходов: 12
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+6 -> 5 -> 4 -> 5 -> 4 -> 6 -> 7 -> 4 -> 2 -> 7 -> 3 -> 2 -> 3 -> 4 -> 7 -> 3 -> 2 -> 7 -> 1 -> 2 -> 1 -> 6 -> 2 -> 1

@@ -1,0 +1,18 @@
+Level: 362
+Scheme: LevelScheme7 (#7)
+Seed: -593622563
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 18/150
+Решаемых раскладок найдено: 4
+Количество ходов: 18
+Статус: В ДИАПАЗОНЕ
+1 -> 7 -> 5 -> 1 -> 4 -> 5 -> 3 -> 7 -> 3 -> 4 -> 2 -> 3 -> 6 -> 2 -> 6 -> 7 -> 6 -> 3 -> 1 -> 6 -> 2 -> 6 -> 4 -> 2 -> 1 -> 4 -> 3 -> 1 -> 2 -> 3 -> 5 -> 2
+ -> 5 -> 4 -> 2 -> 5

@@ -1,0 +1,17 @@
+Level: 407
+Scheme: LevelScheme18 (#18)
+Seed: 2030963057
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 62
+Количество ходов: 10
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+1 -> 5 -> 4 -> 1 -> 2 -> 4 -> 3 -> 5 -> 3 -> 2 -> 4 -> 3 -> 6 -> 4 -> 1 -> 6 -> 7 -> 5 -> 7 -> 1

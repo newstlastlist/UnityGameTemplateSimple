@@ -1,0 +1,17 @@
+Level: 356
+Scheme: LevelScheme10 (#10)
+Seed: 2104219345
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 7/150
+Решаемых раскладок найдено: 1
+Количество ходов: 14
+Статус: В ДИАПАЗОНЕ
+4 -> 6 -> 1 -> 4 -> 1 -> 6 -> 5 -> 1 -> 3 -> 5 -> 2 -> 3 -> 2 -> 5 -> 2 -> 6 -> 3 -> 2 -> 4 -> 3 -> 4 -> 1 -> 5 -> 4 -> 3 -> 5 -> 2 -> 3

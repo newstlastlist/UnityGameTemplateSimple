@@ -1,0 +1,17 @@
+Level: 285
+Scheme: LevelScheme14 (#14)
+Seed: -265625047
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 25
+Количество ходов: 15
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+3 -> 6 -> 5 -> 6 -> 8 -> 6 -> 4 -> 8 -> 4 -> 3 -> 5 -> 4 -> 8 -> 5 -> 7 -> 5 -> 1 -> 8 -> 2 -> 1 -> 2 -> 8 -> 3 -> 2 -> 7 -> 3 -> 1 -> 7 -> 3 -> 1

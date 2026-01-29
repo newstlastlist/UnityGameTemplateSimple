@@ -1,0 +1,21 @@
+Level: 61
+Scheme: LevelScheme7 (#7)
+Seed: 1283833069
+Words %: Word75
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 20..21 (inclusive)
+LastAttemptsUsed: 95
+
+---- How To Complete Level ----
+Попыток: 95/500
+Решаемых раскладок найдено: 12
+Целевой диапазон ходов: 20..21 (включительно)
+Остановка по попаданию в диапазон.
+Количество ходов: 20
+Статус: В ДИАПАЗОНЕ
+2 -> 7 -> 4 -> 2 -> 6 -> 4 -> 6 -> 7 -> 3 -> 6 -> 3 -> 7 -> 6 -> 3 -> 4 -> 6 -> 4 -> 7 -> 5 -> 4 -> 1 -> 5 -> 1 -> 4 -> 1 -> 6 -> 2 -> 1 -> 2 -> 4 -> 1 -> 2
+ -> 3 -> 1 -> 5 -> 3 -> 5 -> 1 -> 3 -> 5

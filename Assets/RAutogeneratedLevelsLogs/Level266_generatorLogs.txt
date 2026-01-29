@@ -1,0 +1,17 @@
+Level: 266
+Scheme: LevelScheme16 (#16)
+Seed: 128850126
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 3/150
+Решаемых раскладок найдено: 3
+Количество ходов: 13
+Статус: В ДИАПАЗОНЕ
+1 -> 5 -> 1 -> 6 -> 2 -> 6 -> 4 -> 6 -> 2 -> 1 -> 4 -> 5 -> 2 -> 4 -> 3 -> 2 -> 3 -> 1 -> 4 -> 3 -> 7 -> 2 -> 7 -> 5 -> 2 -> 7

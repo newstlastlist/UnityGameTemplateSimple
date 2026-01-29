@@ -1,0 +1,18 @@
+Level: 301
+Scheme: LevelScheme17 (#17)
+Seed: 27612308
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 119/150
+Решаемых раскладок найдено: 7
+Количество ходов: 18
+Статус: В ДИАПАЗОНЕ
+5 -> 8 -> 1 -> 8 -> 6 -> 1 -> 2 -> 5 -> 4 -> 5 -> 6 -> 4 -> 7 -> 6 -> 3 -> 7 -> 2 -> 3 -> 6 -> 2 -> 8 -> 6 -> 2 -> 8 -> 5 -> 2 -> 4 -> 5 -> 7 -> 4 -> 7 -> 8
+ -> 1 -> 7 -> 4 -> 1

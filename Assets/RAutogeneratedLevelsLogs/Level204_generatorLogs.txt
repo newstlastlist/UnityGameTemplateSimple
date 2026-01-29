@@ -1,0 +1,17 @@
+Level: 204
+Scheme: LevelScheme2 (#2)
+Seed: 356250582
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 1/150
+Решаемых раскладок найдено: 1
+Количество ходов: 7
+Статус: В ДИАПАЗОНЕ
+2 -> 4 -> 1 -> 2 -> 3 -> 4 -> 1 -> 3 -> 2 -> 1 -> 3 -> 2 -> 4 -> 3

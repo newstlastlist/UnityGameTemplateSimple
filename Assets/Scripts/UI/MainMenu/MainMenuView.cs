@@ -2,34 +2,27 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Infrastructure;
 
 namespace UI.MainMenu
 {
-    public sealed class MainMenuView : MonoBehaviour
+    public class MainMenuView : MonoBehaviour
     {
         [SerializeField] private Button _playButton;
-        
-        public event Action OnPlayClicked;
+        [SerializeField] private TextMeshProUGUI _levelText;
 
-        private void Awake()
+        public void Initialize(System.Action onPlayClicked, int levelNumber)
         {
             if (_playButton != null)
             {
-                _playButton.onClick.AddListener(OnPlayClickedHandler);
+                _playButton.onClick.RemoveAllListeners();
+                _playButton.onClick.AddListener(() => onPlayClicked?.Invoke());
             }
-        }
 
-        private void OnDestroy()
-        {
-            if (_playButton != null)
+            if (_levelText != null)
             {
-                _playButton.onClick.RemoveListener(OnPlayClickedHandler);
+                _levelText.text = $"Level {levelNumber}";
             }
-        }
-
-        private void OnPlayClickedHandler()
-        {
-            OnPlayClicked?.Invoke();
         }
     }
 }

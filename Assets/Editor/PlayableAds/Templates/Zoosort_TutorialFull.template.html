@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+  <title>ZooSort Playable</title>
+  <style>
+    html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#0e2f7a; }
+    * { box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+    canvas { display:block; width:100%; height:100%; touch-action: none; }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+/*__ASSETS__*/
+/*__LAYOUT__*/
+/*__LEVELS_DATA__*/
+/*__CHIP_SIZE_OVERRIDES__*/
+
+var STORE_URL = "/*__STORE_URL__*/";
+var DEBUG = /*__DEBUG__*/;
+var EXPORT_STAMP = "/*__EXPORT_STAMP__*/";
+var SCENARIO = "/*__MODE__*/"; // TutorialFull | TutorialShort | TutorialMedium
+
+// Scenario state
+var _didAutoStore = false;
+
+// ===== Error overlay (helps when running in file:// or ad WebViews without console) =====
+function showFatalError(text) {
+  try {
+    var pre = document.getElementById("__fatal");
+    if (!pre) {
+      pre = document.createElement("pre");
+      pre.id = "__fatal";
+      pre.style.position = "fixed";
+      pre.style.left = "0";
+      pre.style.top = "0";
+      pre.style.right = "0";
+      pre.style.bottom = "0";
+      pre.style.margin = "0";
+      pre.style.padding = "12px";
+      pre.style.background = "rgba(0,0,0,0.85)";
+      pre.style.color = "#ffdddd";
+      pre.style.font = "14px/1.35 monospace";
+      pre.style.whiteSpace = "pre-wrap";
+      pre.style.zIndex = "999999";
+      document.body.appendChild(pre);
+    }
+    pre.textContent = String(text || "Unknown error");
+  } catch (e) {}
+}
+
+window.onerror = function(message, source, lineno, colno, error) {
+  var details = String(message || "Unknown error");
+  if (lineno || colno) details += "\\n@" + lineno + ":" + colno;
+  if (source) details += "\\n" + source;
+  if (error && error.stack) details += "\\n\\n" + error.stack;
+  showFatalError(details);
+  return false;
+};
+
+function openStore() {
+  try {
+    if (window.mraid && typeof window.mraid.open === "function") {
+      window.mraid.open(STORE_URL);
+      return;
+    }
+  } catch (e) {}
+
+  try {
+    var w = window.open(STORE_URL, "_blank");
+    if (w) { return; }
+  } catch (e) {}
+
+  try { location.href = STORE_URL; } catch (e) {}
+}
+
+function shouldUseLevel2() {
+  // TutorialShort: Level 1 -> Store
+  // TutorialMedium / TutorialFull: Level 1 -> Level 2 -> Store
+  return SCENARIO !== "TutorialShort";
+}
+
+function shouldShowWinOverlayOnLevel1() {
+  // In TutorialShort we go to store right after level 1 completion.
+  return SCENARIO !== "TutorialShort";
+}
+
+function shouldShowWinOverlayOnLevel2() {
+  // TutorialMedium: we go to store on the first completed move on level 2.
+  return SCENARIO === "TutorialFull";
+}
+
+function triggerAutoStoreWithFallbackOverlay() {
+  if (_didAutoStore) return;
+  _didAutoStore = true;
+  // Best-effort immediate store open (may be blocked in some browsers without user gesture).
+  openStore();
+  // Fallback: show the existing overlay button that opens the store on click.
+  game.overlay = { type: "win", button: "level3" };
+}
+
+// ===== Canvas setup =====
+var canvas = document.getElementById("c");
+// ES5-safe: do not pass options object (older WebViews may not support it)
+var ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  var dpr = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
+  var w = Math.max(1, Math.floor(window.innerWidth * dpr));
+  var h = Math.max(1, Math.floor(window.innerHeight * dpr));
+  canvas.width = w;
+  canvas.height = h;
+  canvas._dpr = dpr;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+function nowMs() { return performance.now(); }
+function clamp01(v) { return Math.max(0, Math.min(1, v)); }
+function lerp(a,b,t){ return a + (b-a)*t; }
+function easeOutCubic(t){ t = clamp01(t); return 1 - Math.pow(1 - t, 3); }
+
+// ===== Images =====
+function createImage(dataUri) {
+  if (!dataUri || typeof dataUri !== "string") return null;
+  var img = new Image();
+  img.src = dataUri;
+  return img;
+}
+
+var IMAGES = {
+  background: createImage(ASSETS.backgroundSprite),
+  column4: createImage(ASSETS.columnSpriteCapacity4),
+  finger: createImage(ASSETS.tutorialFingerSprite),
+  btnDownload: createImage(ASSETS.downloadButtonSprite),
+  btnLevel2: createImage(ASSETS.level2ButtonSprite),
+  btnLevel3: createImage(ASSETS.level3ButtonSprite),
+  chipBase: createImage(ASSETS.chipBaseSprite),
+  hintsBg: createImage(ASSETS.hintsBackgroundSprite),
+};
+
+function isImageItemId(itemId) {
+  // Heuristic for current project: image chips store a Resources path like "Textures/ImageCategories/Fish/..."
+  return !!itemId && typeof itemId === "string" && itemId.indexOf("/") >= 0 && itemId.indexOf(" ") < 0;
+}
+
+function getAssetsKeyForImageItemId(itemId) {
+  return "img_" + String(itemId || "").split("/").join("_");
+}
+
+var IMAGE_CACHE = {};
+function getImageForItemId(itemId) {
+  if (!isImageItemId(itemId)) return null;
+  var key = getAssetsKeyForImageItemId(itemId);
+  if (IMAGE_CACHE[key]) return IMAGE_CACHE[key];
+  var dataUri = ASSETS[key];
+  if (!dataUri) return null;
+  var img = createImage(dataUri);
+  IMAGE_CACHE[key] = img;
+  return img;
+}
+
+// ===== Language (EN) =====
+var WORD_TRANSLATIONS_RU_TO_EN = {
+  "брюки": "pants",
+  "рубашка": "shirt",
+  "груша": "pear",
+  "абрикос": "apricot",
+  "костюм": "suit",
+  "ананас": "pineapple",
+  "слива": "plum",
+  "пальто": "coat",
+  "джем": "jam",
+  "почтовая": "mail",
+  "клатч": "clutch",
+  "портфель": "briefcase",
+  "масло": "butter",
+  "бекон": "bacon",
+  "яйцо": "egg",
+  "чемодан": "suitcase"
+};
+
+function translateWordToEnglish(text) {
+  if (!text) return "";
+  if (isImageItemId(text)) return text;
+  var key = String(text);
+  if (WORD_TRANSLATIONS_RU_TO_EN.hasOwnProperty(key)) return WORD_TRANSLATIONS_RU_TO_EN[key];
+  return key;
+}
+
+function getChipBaseDrawSize() {
+  var o = (typeof CHIP_BASE_SIZE_OVERRIDE !== "undefined" && CHIP_BASE_SIZE_OVERRIDE) ? CHIP_BASE_SIZE_OVERRIDE : null;
+  if (o && o.w > 0 && o.h > 0) return { w: o.w, h: o.h };
+  var img = IMAGES.chipBase;
+  if (img && img.naturalWidth && img.naturalHeight) return { w: img.naturalWidth, h: img.naturalHeight };
+  return { w: DESIGN.chipDrawWidth, h: DESIGN.chipDrawHeight };
+}
+
+function getColumnRectForIndex(columnIndex) {
+  var arr = (L.level1ColumnRects || []);
+  if (arr && arr.length > columnIndex && arr[columnIndex]) {
+    return arr[columnIndex];
+  }
+  return { width: (IMAGES.column4.naturalWidth || 300), height: (IMAGES.column4.naturalHeight || 600) };
+}
+
+function getImageNaturalSize(img, fallbackW, fallbackH) {
+  var w = (img && img.naturalWidth) ? img.naturalWidth : (fallbackW || 1);
+  var h = (img && img.naturalHeight) ? img.naturalHeight : (fallbackH || 1);
+  return { w, h };
+}
+
+function getFitSizePreserveAspect(img, boxW, boxH, fallbackW, fallbackH) {
+  var n = getImageNaturalSize(img, fallbackW, fallbackH);
+  var s = Math.min(boxW / Math.max(1, n.w), boxH / Math.max(1, n.h));
+  return { w: n.w * s, h: n.h * s };
+}
+
+// Unity UI in our reference scene uses Image.PreserveAspect = false for size examples,
+// so we must DRAW INTO THE BOX exactly (even if it distorts slightly) to match Unity 1:1.
+var PRESERVE_CHIP_ASPECT = false;
+
+function debugStrokeRect(x, y, w, h, color) {
+  if (!DEBUG) return;
+  ctx.save();
+  ctx.strokeStyle = color || "rgba(255,0,0,0.7)";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(x, y, w, h);
+  ctx.restore();
+}
+
+function drawDebugStamp() {
+  if (!DEBUG) return;
+  if (!EXPORT_STAMP) return;
+  ctx.save();
+  ctx.font = "600 " + Math.max(16, Math.floor(18 * getScale())) + "px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "bottom";
+  ctx.fillStyle = "rgba(0,0,0,0.45)";
+  ctx.fillRect(12, canvas.height - 34, 420, 28);
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText("export: " + EXPORT_STAMP, 20, canvas.height - 14);
+  ctx.restore();
+}
+
+// ===== Level data (hardcoded) =====
+// Positions come from captured Unity layout if present; otherwise fallback numbers.
+var FALLBACK_LAYOUT = {
+  designWidth: 1080,
+  designHeight: 1920,
+  columns: [
+    {x:-120.94,y:207.13},
+    {x:170.39,y:207.13},
+    {x:-121.11,y:-483.01},
+    {x:170.22,y:-483.01},
+  ],
+  // bottom->top, canvas local Y (Unity style, up positive)
+  slotOffsetsYFromBottom: [-182,-45,92,229],
+  finger: { centerX: 0, centerY: 0, width: 140, height: 140 },
+  level1ColumnRects: [
+    {centerX:0,centerY:0,width:300,height:600},
+    {centerX:0,centerY:0,width:300,height:600},
+    {centerX:0,centerY:0,width:300,height:600},
+    {centerX:0,centerY:0,width:300,height:600},
+  ],
+  downloadButton: { centerX: 0, centerY: -820, width: 520, height: 160 },
+  winText: { centerX: 0, centerY: 250, width: 700, height: 120 },
+  winButton: { centerX: 0, centerY: -120, width: 520, height: 160 },
+  hintsPanel: { centerX: 0, centerY: 720, width: 920, height: 220 },
+};
+var L = (typeof LAYOUT !== "undefined" && LAYOUT) ? LAYOUT : FALLBACK_LAYOUT;
+
+function buildChipsBottomToTopFromJsonColumn(columnJson) {
+  var chipsTopToBottom = (columnJson && columnJson.chipsTopToBottom) ? columnJson.chipsTopToBottom : [];
+  var itemIdsTopToBottom = (columnJson && columnJson.itemIdsTopToBottom) ? columnJson.itemIdsTopToBottom : [];
+  var chips = [];
+  for (var i = chipsTopToBottom.length - 1; i >= 0; i--) {
+    chips.push({ category: chipsTopToBottom[i] || 0, itemId: itemIdsTopToBottom[i] || "" });
+  }
+  return chips;
+}
+
+function getColumnIndexByTutorObjectId(level, tutorObjectId) {
+  var cols = level && level.columns ? level.columns : [];
+  for (var i = 0; i < cols.length; i++) {
+    if ((cols[i].tutorObjectId || 0) === tutorObjectId) return i;
+  }
+  return Math.max(0, tutorObjectId - 1);
+}
+
+function buildLevelsFromEmbeddedJson() {
+  if (typeof LEVELS_DATA === "undefined" || !LEVELS_DATA || !LEVELS_DATA.levels || LEVELS_DATA.levels.length < 2) {
+    throw new Error("LEVELS_DATA is missing.");
+  }
+
+  var srcLevels = LEVELS_DATA.levels;
+  var result = [];
+  for (var li = 0; li < srcLevels.length; li++) {
+    var src = srcLevels[li];
+    var srcColumns = src.columns || [];
+    var columns = [];
+    for (var ci = 0; ci < srcColumns.length; ci++) {
+      var pos = null;
+      if (L.columns && L.columns.length > ci && L.columns[ci]) {
+        pos = L.columns[ci];
+      } else if (L.level1ColumnRects && L.level1ColumnRects.length > ci && L.level1ColumnRects[ci]) {
+        pos = { x: L.level1ColumnRects[ci].centerX || 0, y: L.level1ColumnRects[ci].centerY || 0 };
+      } else {
+        pos = { x: 0, y: 0 };
+      }
+      var c = srcColumns[ci] || {};
+      columns.push({
+        x: pos.x || 0,
+        y: pos.y || 0,
+        capacity: c.capacity || 4,
+        tutorObjectId: c.tutorObjectId || 0,
+        chips: buildChipsBottomToTopFromJsonColumn(c),
+      });
+    }
+
+    var tutorialSequenceTutorIds = [1, 3, 2, 3, 2, 1]; // Level1TutorScenario-like
+    result.push({
+      id: li + 1,
+      columns,
+      categoryBindings: src.categoryBindings || [],
+      tutorial: (li === 0) ? { sequenceTutorIds: tutorialSequenceTutorIds } : null,
+      winButton: (li === 0) ? "level2" : "level3",
+    });
+  }
+  return result;
+}
+
+var LEVELS = buildLevelsFromEmbeddedJson();
+
+// ===== Layout constants =====
+// All layout numbers are in Unity Canvas local space (origin at center, Y up) for designWidth/designHeight.
+var DESIGN = {
+  chipDrawWidth: 113,
+  chipDrawHeight: 123,
+  selectOffsetY: 40,
+  selectScale: 1.28,
+  selectDurationMs: 150,
+  moveDurationPerChipMs: 300,
+  moveStaggerMs: 120,
+  arcHeight: 350,
+};
+
+// ===== Game state =====
+var game = null;
+
+function startLevel(levelIndex) {
+  var level = LEVELS[levelIndex];
+  var columnsState = [];
+  for (var ci = 0; ci < level.columns.length; ci++) {
+    var c = level.columns[ci];
+    columnsState.push({
+      x: c.x,
+      y: c.y,
+      capacity: c.capacity || 4,
+      tutorObjectId: c.tutorObjectId || 0,
+      chips: (c.chips || []).slice(0), // bottom->top
+      isFinished: false,
+      dim: 0,
+    });
+  }
+
+  game = {
+    levelIndex: levelIndex,
+    level: level,
+    columns: columnsState,
+
+    selectedColumnIndex: -1,
+    selectedType: 0,
+    selectedCount: 0,
+    selectionAnim: null,
+
+    activeMove: null,
+
+    // Tutorial state (level 1 only)
+    tutorialStepIndex: level.tutorial ? 0 : -1, // index in sequenceTutorIds
+    allowedColumnIndex: level.tutorial ? getColumnIndexByTutorObjectId(level, level.tutorial.sequenceTutorIds[0]) : -1,
+    fingerVisible: !!level.tutorial,
+    fingerTargetColumnIndex: level.tutorial ? getColumnIndexByTutorObjectId(level, level.tutorial.sequenceTutorIds[0]) : -1,
+    fingerPulsePhase: 0,
+
+    hints: buildHintsForLevel(level),
+
+    overlay: null, // null | { type:'win', button:'level2'|'level3' }
+
+    // Scenario triggers
+    hasTriggeredStore: false,
+    hasMadeMoveOnLevel2: false,
+  };
+
+  // Apply finish immediately if any column already complete
+  for (var i=0;i<game.columns.length;i++) {
+    tryFinishColumn(i);
+  }
+}
+
+// ===== Mechanics (ported from MoveService/SelectionService/FinishService, simplified) =====
+function countTopGroup(column) {
+  if (!column || column.isFinished) return { type:0, count:0 };
+  var chips = column.chips;
+  if (!chips || chips.length === 0) return { type:0, count:0 };
+  var topChip = chips[chips.length - 1];
+  var topType = topChip ? (topChip.category || 0) : 0;
+  if (!topType) return { type:0, count:0 };
+  var count = 1;
+  for (var i = chips.length - 2; i >= 0; i--) {
+    var chip = chips[i];
+    var chipType = chip ? (chip.category || 0) : 0;
+    if (chipType !== topType) break;
+    count++;
+  }
+  return { type: topType, count };
+}
+
+function clearSelection() {
+  game.selectedColumnIndex = -1;
+  game.selectedType = 0;
+  game.selectedCount = 0;
+  game.selectionAnim = null;
+}
+
+function selectColumn(columnIndex) {
+  var col = game.columns[columnIndex];
+  if (!col || col.isFinished) { clearSelection(); return; }
+  var g = countTopGroup(col);
+  if (g.count <= 0) { clearSelection(); return; }
+  game.selectedColumnIndex = columnIndex;
+  game.selectedType = g.type;
+  game.selectedCount = g.count;
+  game.selectionAnim = { startedAt: nowMs(), isOn: true };
+}
+
+function tryFinishColumn(columnIndex) {
+  var col = game.columns[columnIndex];
+  if (!col || col.isFinished) return false;
+  if (!col.chips || col.chips.length <= 0) return false;
+  if (col.chips.length < col.capacity) return false;
+  var g = countTopGroup(col);
+  if (g.count === col.capacity && g.type) {
+    col.isFinished = true;
+    col.dim = 1;
+    markHintDoneForCategory(g.type);
+    // If selection was on this column - clear.
+    if (game.selectedColumnIndex === columnIndex) {
+      clearSelection();
+    }
+    return true;
+  }
+  return false;
+}
+
+function isWin() {
+  // For these levels it's enough to require:
+  // - every chip is inside finished columns (i.e. non-finished columns contain no chips)
+  for (var i=0;i<game.columns.length;i++) {
+    var col = game.columns[i];
+    if (!col.isFinished && col.chips.length > 0) return false;
+  }
+  return true;
+}
+
+function beginMove(fromIndex, toIndex, chipsToMove) {
+  var from = game.columns[fromIndex];
+  var to = game.columns[toIndex];
+  if (!from || !to) return;
+
+  var moving = [];
+  for (var i=0;i<chipsToMove;i++) {
+    var chip = from.chips.pop();
+    moving.push(chip);
+  }
+
+  // Moving top group: first popped is top-most, but animation in Unity flies top first.
+  // We'll animate from top to bottom visually, then push in same order.
+  // For stack correctness, we push back later in reverse of pop? In Unity they pop and push sequentially.
+  // We'll emulate: popped sequentially, pushed sequentially. That means moving array is [top, next, ...].
+
+  var startTime = nowMs();
+  var perChip = [];
+  for (var k = 0; k < moving.length; k++) {
+    perChip.push({
+      chip: moving[k],
+      idx: k,
+      delayMs: k * DESIGN.moveStaggerMs,
+      durationMs: DESIGN.moveDurationPerChipMs,
+      startPos: getTopChipWorldPosition(fromIndex, k),
+      endPos: getTargetSlotWorldPosition(toIndex, k),
+    });
+  }
+  game.activeMove = {
+    fromIndex: fromIndex,
+    toIndex: toIndex,
+    chipTypes: moving,
+    startTimeMs: startTime,
+    completed: 0,
+    perChip: perChip,
+  };
+
+  clearSelection();
+}
+
+function finalizeMoveIfDone() {
+  var mv = game.activeMove;
+  if (!mv) return;
+
+  var allDone = true;
+  for (var i = 0; i < mv.perChip.length; i++) {
+    var p = mv.perChip[i];
+    var t = (nowMs() - mv.startTimeMs - p.delayMs) / p.durationMs;
+    if (t < 1) { allDone = false; break; }
+  }
+  if (!allDone) return;
+
+  // Push chips to target, preserving pop order
+  var to = game.columns[mv.toIndex];
+  for (var j=0;j<mv.chipTypes.length;j++) {
+    to.chips.push(mv.chipTypes[j]);
+  }
+
+  game.activeMove = null;
+
+  // TutorialMedium: after FIRST completed action on Level 2 (i.e. after first finished MOVE) -> store.
+  // Selection-only clicks do not reach finalizeMoveIfDone(), so they are not counted as actions.
+  if (SCENARIO === "TutorialMedium" && game.levelIndex === 1) {
+    triggerAutoStoreWithFallbackOverlay();
+    return;
+  }
+
+  // Finish checks on both columns
+  tryFinishColumn(mv.fromIndex);
+  tryFinishColumn(mv.toIndex);
+
+  if (isWin()) {
+    if (game.levelIndex === 0) {
+      // Level 1 win
+      if (SCENARIO === "TutorialShort") {
+        triggerAutoStoreWithFallbackOverlay();
+        return;
+      }
+      if (shouldUseLevel2()) {
+        game.overlay = { type: "win", button: "level2" };
+        return;
+      }
+    }
+
+    if (game.levelIndex === 1) {
+      // Level 2 win
+      if (shouldShowWinOverlayOnLevel2()) {
+        game.overlay = { type: "win", button: "level3" };
+        return;
+      }
+    }
+  }
+}
+
+// ===== Input =====
+function isInputBlockedByTutorial(columnIndex) {
+  if (!game.level.tutorial) return false;
+  if (!game.fingerVisible) return false;
+  return columnIndex !== game.allowedColumnIndex;
+}
+
+function onColumnClicked(columnIndex) {
+  if (game.overlay) return;
+  if (game.activeMove) return;
+  if (isInputBlockedByTutorial(columnIndex)) return;
+
+  if (game.selectedColumnIndex < 0) {
+    selectColumn(columnIndex);
+    handleTutorialProgressAfterClick(columnIndex);
+    return;
+  }
+
+  var fromIndex = game.selectedColumnIndex;
+  if (fromIndex === columnIndex) {
+    clearSelection();
+    handleTutorialProgressAfterClick(columnIndex);
+    return;
+  }
+
+  var from = game.columns[fromIndex];
+  var to = game.columns[columnIndex];
+  if (!from || !to) {
+    clearSelection();
+    return;
+  }
+
+  // If target finished => switch selection (as in MoveService)
+  if (to.isFinished) {
+    selectColumn(columnIndex);
+    handleTutorialProgressAfterClick(columnIndex);
+    return;
+  }
+
+  // Top type mismatch => switch selection
+  if (to.chips.length > 0) {
+    var toTopChip = to.chips[to.chips.length - 1];
+    var toTopType = toTopChip ? (toTopChip.category || 0) : 0;
+    if (toTopType !== game.selectedType) {
+      selectColumn(columnIndex);
+      handleTutorialProgressAfterClick(columnIndex);
+      return;
+    }
+  }
+
+  // Space check
+  var freeSpace = to.capacity - to.chips.length;
+  var movableCount = Math.min(game.selectedCount, freeSpace);
+  if (movableCount <= 0) {
+    selectColumn(columnIndex);
+    handleTutorialProgressAfterClick(columnIndex);
+    return;
+  }
+
+  beginMove(fromIndex, columnIndex, movableCount);
+  handleTutorialProgressAfterClick(columnIndex);
+}
+
+function handleTutorialProgressAfterClick(columnIndex) {
+  if (!game.level.tutorial) return;
+
+  if (game.tutorialStepIndex < 0) return;
+
+  var seq = game.level.tutorial.sequenceTutorIds || [];
+  var expectedTutorId = seq[game.tutorialStepIndex];
+  var expectedColumnIndex = getColumnIndexByTutorObjectId(game.level, expectedTutorId);
+  if (columnIndex !== expectedColumnIndex) return;
+
+  game.tutorialStepIndex++;
+  if (game.tutorialStepIndex >= seq.length) {
+    game.allowedColumnIndex = -1;
+    game.fingerVisible = false;
+    return;
+  }
+
+  var nextTutorId = seq[game.tutorialStepIndex];
+  var nextColumnIndex = getColumnIndexByTutorObjectId(game.level, nextTutorId);
+  game.allowedColumnIndex = nextColumnIndex;
+  game.fingerTargetColumnIndex = nextColumnIndex;
+}
+
+function getPointerPos(evt) {
+  var rect = canvas.getBoundingClientRect();
+  var dpr = canvas._dpr || 1;
+  return {
+    x: (evt.clientX - rect.left) * dpr,
+    y: (evt.clientY - rect.top) * dpr,
+  };
+}
+
+canvas.addEventListener("pointerdown", function(evt) {
+  evt.preventDefault();
+  var p = getPointerPos(evt);
+  var hit = hitTest(p.x, p.y);
+  if (!hit) return;
+  if (hit.type === "download") { openStore(); return; }
+  if (hit.type === "winButton") {
+    if (hit.button === "level2") { startLevel(1); return; }
+    if (hit.button === "level3") { openStore(); return; }
+    return;
+  }
+  if (hit.type === "column") { onColumnClicked(hit.columnIndex); return; }
+});
+
+// ===== Hit testing =====
+function getScale() {
+  // IMPORTANT:
+  // canvas.width/height are already in REAL pixels (CSS * devicePixelRatio).
+  // L.designWidth/Height are in Unity canvas local units at reference resolution.
+  // Therefore scale must be (realCanvasPx / designUnits) WITHOUT extra DPR multipliers.
+  var designW = (L.designWidth || 1080);
+  var designH = (L.designHeight || 1920);
+  return Math.min(canvas.width / designW, canvas.height / designH);
+}
+
+function getBoardCenter() {
+  return { x: canvas.width * 0.5, y: canvas.height * 0.5 };
+}
+
+function getColumnWorldPos(columnIndex) {
+  var s = getScale();
+  var c = getBoardCenter();
+  var col = game.columns[columnIndex];
+  return { x: c.x + col.x * s, y: c.y - col.y * s };
+}
+
+function getSlotWorldPos(columnIndex, slotIndexFromBottom) {
+  var s = getScale();
+  var colPos = getColumnWorldPos(columnIndex);
+  var offs = (L.slotOffsetsYFromBottom && L.slotOffsetsYFromBottom.length > slotIndexFromBottom)
+    ? L.slotOffsetsYFromBottom[slotIndexFromBottom]
+    : 0;
+  // Unity canvas local: Y up. Canvas: Y down => minus.
+  return { x: colPos.x, y: colPos.y - offs * s };
+}
+
+function getTopChipWorldPosition(columnIndex, idxInMovingGroup) {
+  // idxInMovingGroup: 0 is top-most in the group.
+  var col = game.columns[columnIndex];
+  var topSlotFromBottom = col.chips.length - 1 - idxInMovingGroup;
+  var slotIndexFromBottom = Math.max(0, Math.min(col.capacity - 1, topSlotFromBottom));
+  return getSlotWorldPos(columnIndex, slotIndexFromBottom);
+}
+
+function getTargetSlotWorldPosition(columnIndex, idxInMovingGroup) {
+  var col = game.columns[columnIndex];
+  // after move, chips will occupy from current count upward
+  var slotIndexFromBottom = col.chips.length + idxInMovingGroup;
+  return getSlotWorldPos(columnIndex, slotIndexFromBottom);
+}
+
+function hitTest(x, y) {
+  var s = getScale();
+
+  // Download button bar
+  var btn = getDownloadButtonRect();
+  if (x >= btn.x && x <= btn.x + btn.w && y >= btn.y && y <= btn.y + btn.h) {
+    return { type: "download" };
+  }
+
+  // Overlay win button
+  if (game.overlay && game.overlay.type === "win") {
+    var wbtn = getWinButtonRect(game.overlay.button);
+    if (x >= wbtn.x && x <= wbtn.x + wbtn.w && y >= wbtn.y && y <= wbtn.y + wbtn.h) {
+      return { type: "winButton", button: game.overlay.button };
+    }
+  }
+
+  // Columns
+  var colImg = IMAGES.column4;
+  for (var i=0;i<game.columns.length;i++) {
+    var colRect = getColumnRectForIndex(i);
+    var cw = (colRect.width || (colImg.naturalWidth || 300)) * s;
+    var ch = (colRect.height || (colImg.naturalHeight || 600)) * s;
+    var p = getColumnWorldPos(i);
+    var rx = p.x - cw * 0.5;
+    var ry = p.y - ch * 0.5;
+    debugStrokeRect(rx, ry, cw, ch, "rgba(0,255,255,0.6)");
+    if (x >= rx && x <= rx + cw && y >= ry && y <= ry + ch) {
+      return { type: "column", columnIndex: i };
+    }
+  }
+  return null;
+}
+
+// ===== Rendering =====
+function drawImageCentered(img, x, y, w, h, alpha) {
+  if (!img) return;
+  if (!w) w = img.naturalWidth || 1;
+  if (!h) h = img.naturalHeight || 1;
+  ctx.save();
+  if (alpha !== undefined) ctx.globalAlpha = alpha;
+  ctx.drawImage(img, x - w * 0.5, y - h * 0.5, w, h);
+  ctx.restore();
+}
+
+function drawTextCentered(text, x, y, sizePx, color, stroke) {
+  ctx.save();
+  ctx.font = "800 " + sizePx + "px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  if (stroke) {
+    ctx.lineWidth = Math.max(2, Math.floor(sizePx * 0.12));
+    ctx.strokeStyle = stroke;
+    ctx.strokeText(text, x, y);
+  }
+  ctx.fillStyle = color;
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+function drawTextFitCentered(text, x, y, maxW, maxH, maxSizePx, color, stroke) {
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  var size = Math.max(10, Math.floor(maxSizePx));
+  while (size > 10) {
+    ctx.font = "800 " + size + "px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+    var m = ctx.measureText(text);
+    var w = (m && m.width) ? m.width : 0;
+    var h = size * 1.05;
+    if (w <= maxW && h <= maxH) break;
+    size -= 1;
+  }
+
+  if (stroke) {
+    ctx.lineWidth = Math.max(2, Math.floor(size * 0.12));
+    ctx.strokeStyle = stroke;
+    ctx.strokeText(text, x, y);
+  }
+  ctx.fillStyle = color;
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+function drawChipAt(chip, x, y, scaleMul) {
+  if (!chip) return;
+  var s = getScale();
+  var baseSize = getChipBaseDrawSize();
+  var boxW = baseSize.w * s * (scaleMul || 1);
+  var boxH = baseSize.h * s * (scaleMul || 1);
+
+  // Base
+  drawImageCentered(IMAGES.chipBase, x, y, boxW, boxH, 1);
+
+  // Content
+  var pad = Math.max(6, Math.floor(Math.min(boxW, boxH) * 0.14));
+  var contentW = Math.max(1, boxW - pad * 2);
+  var contentH = Math.max(1, boxH - pad * 2);
+
+  if (isImageItemId(chip.itemId)) {
+    var img = getImageForItemId(chip.itemId);
+    if (img && img.complete) {
+      var fit = getFitSizePreserveAspect(img, contentW, contentH, contentW, contentH);
+      drawImageCentered(img, x, y, fit.w, fit.h, 1);
+    }
+    return;
+  }
+
+  var rawText = String(chip.itemId || "");
+  var text = translateWordToEnglish(rawText).toUpperCase();
+  if (!text) return;
+  drawTextFitCentered(text, x, y, contentW, contentH, Math.floor(34 * s), "#1b1b1b", null);
+}
+
+function buildHintsForLevel(level) {
+  var bindings = (level && level.categoryBindings) ? level.categoryBindings : [];
+  var entries = [];
+  for (var i = 0; i < bindings.length; i++) {
+    var b = bindings[i] || {};
+    entries.push({
+      chipCategory: b.chipCategory || 0,
+      displayName: String(b.categoryId || b.displayName || ""),
+      isDone: false,
+    });
+  }
+  return { entries: entries };
+}
+
+function markHintDoneForCategory(category) {
+  if (!game || !game.hints || !game.hints.entries) return;
+  for (var i = 0; i < game.hints.entries.length; i++) {
+    var e = game.hints.entries[i];
+    if ((e.chipCategory || 0) === category) {
+      e.isDone = true;
+    }
+  }
+}
+
+function getHintsPanelRect() {
+  var s = getScale();
+  var hp = (L && L.hintsPanel) ? L.hintsPanel : null;
+  var w = ((hp && hp.width) ? hp.width : 920) * s;
+  var h = ((hp && hp.height) ? hp.height : 220) * s;
+  var cx = canvas.width * 0.5 + ((hp && hp.centerX) ? hp.centerX : 0) * s;
+  var cy = canvas.height * 0.5 - ((hp && hp.centerY) ? hp.centerY : 720) * s;
+  return { x: cx - w * 0.5, y: cy - h * 0.5, w, h };
+}
+
+function renderHints() {
+  if (!game || !game.hints || !game.hints.entries) return;
+  var s = getScale();
+  var r = getHintsPanelRect();
+  drawImageCentered(IMAGES.hintsBg, r.x + r.w * 0.5, r.y + r.h * 0.5, r.w, r.h, 1);
+
+  // Single-line, centered, comma-separated, English.
+  var entries = game.hints.entries;
+  var maxSize = Math.max(16, Math.floor(34 * s));
+  var size = maxSize;
+
+  ctx.save();
+  ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
+
+  // Fit font size to panel width.
+  var commaText = ", ";
+  while (size > 10) {
+    ctx.font = "900 " + size + "px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+    var totalW = 0;
+    for (var i = 0; i < entries.length; i++) {
+      var word = String(entries[i].displayName || "").toUpperCase();
+      totalW += ctx.measureText(word).width;
+      if (i < entries.length - 1) totalW += ctx.measureText(commaText).width;
+    }
+    if (totalW <= r.w * 0.86) break;
+    size -= 1;
+  }
+
+  ctx.font = "900 " + size + "px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+  var totalWidth = 0;
+  for (var j = 0; j < entries.length; j++) {
+    var wj = String(entries[j].displayName || "").toUpperCase();
+    totalWidth += ctx.measureText(wj).width;
+    if (j < entries.length - 1) totalWidth += ctx.measureText(commaText).width;
+  }
+
+  var x = (r.x + r.w * 0.5) - totalWidth * 0.5;
+  var y = r.y + r.h * 0.5;
+
+  for (var k = 0; k < entries.length; k++) {
+    var e = entries[k];
+    var text = String(e.displayName || "").toUpperCase();
+    var color = e.isDone ? "#1ea84a" : "#ffffff";
+    ctx.fillStyle = color;
+    ctx.fillText(text, x, y);
+
+    var mw = ctx.measureText(text).width;
+    if (e.isDone) {
+      var midY = y + size * 0.10;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = Math.max(2, Math.floor(3 * s));
+      ctx.beginPath();
+      ctx.moveTo(x, midY);
+      ctx.lineTo(x + mw, midY);
+      ctx.stroke();
+    }
+
+    x += mw;
+    if (k < entries.length - 1) {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillText(commaText, x, y);
+      x += ctx.measureText(commaText).width;
+    }
+  }
+
+  ctx.restore();
+}
+
+
+function getDownloadButtonRect() {
+  var s = getScale();
+  var db = (L && L.downloadButton) ? L.downloadButton : null;
+  var w = ((db && db.width) ? db.width : 520) * s;
+  var h = ((db && db.height) ? db.height : 160) * s;
+  var cx = canvas.width * 0.5 + ((db && db.centerX) ? db.centerX : 0) * s;
+  var cy = canvas.height * 0.5 - ((db && db.centerY) ? db.centerY : 0) * s;
+  return { x: cx - w*0.5, y: cy - h*0.5, w, h };
+}
+
+function getWinButtonRect(buttonType) {
+  var s = getScale();
+  var wb = (L && L.winButton) ? L.winButton : null;
+  var w = ((wb && wb.width) ? wb.width : 520) * s;
+  var h = ((wb && wb.height) ? wb.height : 160) * s;
+  var cx = canvas.width * 0.5 + ((wb && wb.centerX) ? wb.centerX : 0) * s;
+  var cy = canvas.height * 0.5 - ((wb && wb.centerY) ? wb.centerY : 0) * s;
+  return { x: cx - w*0.5, y: cy - h*0.5, w, h };
+}
+
+function evalQuadraticBezier(p0, p1, p2, t) {
+  var u = 1 - t;
+  return {
+    x: u*u*p0.x + 2*u*t*p1.x + t*t*p2.x,
+    y: u*u*p0.y + 2*u*t*p1.y + t*t*p2.y,
+  };
+}
+
+function render(dtMs) {
+  // Background (fallback color if not loaded)
+  ctx.save();
+  ctx.fillStyle = "#0e2f7a";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  var bg = IMAGES.background;
+  if (bg && bg.complete && bg.naturalWidth) {
+    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+  }
+  ctx.restore();
+
+  var s = getScale();
+
+  // Hints (UI)
+  renderHints();
+
+  // Columns + chips
+  for (var i=0;i<game.columns.length;i++) {
+    var col = game.columns[i];
+    var pos = getColumnWorldPos(i);
+    var colImg = IMAGES.column4;
+    var colRect = getColumnRectForIndex(i);
+    var cw = (colRect.width || (colImg.naturalWidth || 300)) * s;
+    var ch = (colRect.height || (colImg.naturalHeight || 600)) * s;
+
+    // Column sprite
+    drawImageCentered(colImg, pos.x, pos.y, cw, ch, 1);
+
+    // Chips (fixed visual size in design pixels, then scaled to screen)
+    for (var k=0;k<col.chips.length;k++) {
+      var chip = col.chips[k];
+      var slotPos = getSlotWorldPos(i, k);
+
+      // Selection animation only for top group in selected column
+      var extraY = 0;
+      var extraScale = 1;
+      if (game.selectedColumnIndex === i) {
+        var g = countTopGroup(col);
+        var fromTopIndex = (col.chips.length - 1) - k;
+        if (fromTopIndex >= 0 && fromTopIndex < g.count) {
+          var anim = game.selectionAnim;
+          var t = anim ? clamp01((nowMs() - anim.startedAt) / DESIGN.selectDurationMs) : 1;
+          var e = easeOutCubic(t);
+          extraY = DESIGN.selectOffsetY * s * e;
+          extraScale = lerp(1, DESIGN.selectScale, e);
+        }
+      }
+
+      drawChipAt(chip, slotPos.x, slotPos.y - extraY, extraScale);
+    }
+
+    // NOTE: completed dim removed by request.
+  }
+
+  // Moving chips on top
+  if (game.activeMove) {
+    var mv = game.activeMove;
+    for (var mi = 0; mi < mv.perChip.length; mi++) {
+      var p = mv.perChip[mi];
+      var tRaw = (nowMs() - mv.startTimeMs - p.delayMs) / p.durationMs;
+      var t = clamp01(tRaw);
+      if (tRaw < 0) continue;
+
+      var start = p.startPos;
+      var end = p.endPos;
+      var apex = { x: (start.x + end.x) * 0.5, y: Math.min(start.y, end.y) - DESIGN.arcHeight * getScale() };
+      var pos = evalQuadraticBezier(start, apex, end, t);
+
+      drawChipAt(p.chip, pos.x, pos.y, 1);
+    }
+    finalizeMoveIfDone();
+  }
+
+  // Tutorial finger
+  if (game.fingerVisible && game.fingerTargetColumnIndex >= 0) {
+    game.fingerPulsePhase += dtMs * 0.006;
+    var pulse = 0.9 + 0.1 * Math.sin(game.fingerPulsePhase);
+
+    var p = getColumnWorldPos(game.fingerTargetColumnIndex);
+    var img = IMAGES.finger;
+    var fingerLayout = (L && L.finger) ? L.finger : null;
+    var iw = ((fingerLayout && fingerLayout.width) ? fingerLayout.width : (img.naturalWidth || 140)) * s * pulse;
+    var ih = ((fingerLayout && fingerLayout.height) ? fingerLayout.height : (img.naturalHeight || 140)) * s * pulse;
+    // Point to the top chip center of the target column (tip offset correction).
+    var col2 = game.columns[game.fingerTargetColumnIndex];
+    var topFromBottom = Math.max(0, col2.chips.length - 1);
+    var target = getSlotWorldPos(game.fingerTargetColumnIndex, topFromBottom);
+    // Desired: finger tip == target
+    // Offset must scale with pulse too, otherwise the tip "drifts" during pulsing.
+    var tipOffX = (L.fingerTipOffsetX !== undefined && L.fingerTipOffsetX !== null) ? L.fingerTipOffsetX : -18;
+    var tipOffY = (L.fingerTipOffsetY !== undefined && L.fingerTipOffsetY !== null) ? L.fingerTipOffsetY : -72;
+    // Our canvas coordinates have +Y DOWN, while Unity canvas local has +Y UP => invert Y offset.
+    var fingerCenterX = target.x - (tipOffX * s * pulse);
+    var fingerCenterY = target.y + (tipOffY * s * pulse);
+    drawImageCentered(img, fingerCenterX, fingerCenterY, iw, ih, 1);
+  }
+
+  // Win overlay
+  if (game.overlay && game.overlay.type === "win") {
+    ctx.save();
+    ctx.globalAlpha = 0.55;
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.restore();
+
+    var wt = (L && L.winText) ? L.winText : null;
+    var wy = canvas.height * 0.5 - ((wt && wt.centerY) ? wt.centerY : 250) * s;
+    drawTextCentered("YOU WIN!", canvas.width * 0.5, wy, Math.floor(78 * s), "#ffffff", "#000000");
+
+    var wbtn = getWinButtonRect(game.overlay.button);
+    var img2 = game.overlay.button === "level2" ? IMAGES.btnLevel2 : IMAGES.btnLevel3;
+    drawImageCentered(img2, wbtn.x + wbtn.w*0.5, wbtn.y + wbtn.h*0.5, wbtn.w, wbtn.h, 1);
+  }
+
+  // Bottom CTA button (always, MUST be above overlays)
+  var cta = getDownloadButtonRect();
+  drawImageCentered(IMAGES.btnDownload, cta.x + cta.w*0.5, cta.y + cta.h*0.5, cta.w, cta.h, 1);
+
+  drawDebugStamp();
+}
+
+// ===== Main loop =====
+var last = nowMs();
+function tick() {
+  var t = nowMs();
+  var dt = Math.min(50, t - last);
+  last = t;
+  if (game) render(dt);
+  requestAnimationFrame(tick);
+}
+
+// Start immediately from Level 1 (index 0)
+try {
+  startLevel(0);
+  tick();
+} catch (e) {
+  showFatalError(e && e.stack ? e.stack : e);
+}
+
+</script>
+</body>
+</html>
+
+

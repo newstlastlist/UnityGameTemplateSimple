@@ -1,0 +1,17 @@
+Level: 486
+Scheme: LevelScheme5 (#5)
+Seed: -699863388
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 17/150
+Решаемых раскладок найдено: 1
+Количество ходов: 13
+Статус: В ДИАПАЗОНЕ
+2 -> 6 -> 1 -> 7 -> 4 -> 1 -> 3 -> 6 -> 5 -> 2 -> 4 -> 5 -> 5 -> 7 -> 1 -> 5 -> 1 -> 6 -> 1 -> 3 -> 3 -> 4 -> 3 -> 2 -> 7 -> 3

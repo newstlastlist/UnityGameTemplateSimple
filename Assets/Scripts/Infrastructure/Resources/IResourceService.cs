@@ -11,5 +11,7 @@ namespace Infrastructure.Resources
         Task<T> LoadPrefabAsync<T>(string resourcesPath) where T : Component;
         GameObject LoadGameObject(string resourcesPath);
         Task<GameObject> LoadGameObjectAsync(string resourcesPath);
+        Sprite LoadSprite(string resourcesPath);
+        Task<Sprite> LoadSpriteAsync(string resourcesPath);
     }
 }

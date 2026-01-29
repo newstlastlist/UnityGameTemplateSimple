@@ -1,0 +1,20 @@
+Level: 22
+Scheme: LevelScheme6 (#6)
+Seed: -508444135
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 10..18 (inclusive)
+LastAttemptsUsed: 1
+
+---- How To Complete Level ----
+Попыток: 1/500
+Решаемых раскладок найдено: 1
+Целевой диапазон ходов: 10..18 (включительно)
+Остановка по попаданию в диапазон.
+Количество ходов: 11
+Статус: В ДИАПАЗОНЕ
+1 -> 6 -> 5 -> 6 -> 4 -> 5 -> 3 -> 1 -> 4 -> 3 -> 5 -> 4 -> 2 -> 5 -> 1 -> 2 -> 3 -> 1 -> 5 -> 3 -> 1 -> 5

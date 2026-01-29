@@ -3,8 +3,7 @@
 namespace Domain
 {
     [Serializable]
-    public class LevelData
+    public sealed class LevelData
     {
-      
     }
 }

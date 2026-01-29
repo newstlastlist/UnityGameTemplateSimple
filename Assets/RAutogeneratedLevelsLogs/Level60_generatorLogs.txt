@@ -1,0 +1,14 @@
+Level: 60
+Scheme: LevelScheme17 (#17)
+Seed: 371122430
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 12..18 (inclusive)
+LastAttemptsUsed: 0
+
+---- How To Complete Level ----
+

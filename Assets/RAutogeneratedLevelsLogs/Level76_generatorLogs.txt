@@ -1,0 +1,17 @@
+Level: 76
+Scheme: LevelScheme14 (#14)
+Seed: -1537142650
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 38
+Количество ходов: 14
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+5 -> 6 -> 7 -> 6 -> 2 -> 5 -> 4 -> 2 -> 8 -> 5 -> 1 -> 8 -> 7 -> 1 -> 4 -> 7 -> 8 -> 4 -> 2 -> 8 -> 7 -> 2 -> 1 -> 7 -> 3 -> 7 -> 3 -> 1

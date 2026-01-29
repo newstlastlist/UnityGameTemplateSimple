@@ -1,0 +1,14 @@
+Level: 42
+Scheme: LevelScheme6 (#6)
+Seed: -2048049877
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 15..18 (inclusive)
+LastAttemptsUsed: 0
+
+---- How To Complete Level ----
+

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6d0acc00cc82d436b9d11446d2ddfef6
+timeCreated: 1438665349
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 43800
+  packageName: Lunar Mobile Console - PRO
+  packageVersion: 1.9.0
+  assetPath: Assets/LunarConsole/Scripts/LunarConsole.prefab
+  uploadId: 731194

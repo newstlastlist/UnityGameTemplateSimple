@@ -1,0 +1,17 @@
+Level: 464
+Scheme: LevelScheme19 (#19)
+Seed: 1217654664
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 57/150
+Решаемых раскладок найдено: 4
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+4 -> 7 -> 1 -> 8 -> 1 -> 7 -> 2 -> 1 -> 3 -> 4 -> 3 -> 2 -> 5 -> 8 -> 5 -> 4 -> 3 -> 5 -> 6 -> 5 -> 6 -> 8 -> 1 -> 6

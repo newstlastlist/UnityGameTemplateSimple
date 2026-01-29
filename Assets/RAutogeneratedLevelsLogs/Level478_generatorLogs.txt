@@ -1,0 +1,17 @@
+Level: 478
+Scheme: LevelScheme6 (#6)
+Seed: 36539916
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 2/150
+Решаемых раскладок найдено: 1
+Количество ходов: 13
+Статус: В ДИАПАЗОНЕ
+3 -> 6 -> 1 -> 3 -> 2 -> 6 -> 4 -> 2 -> 4 -> 6 -> 2 -> 4 -> 5 -> 2 -> 5 -> 1 -> 2 -> 5 -> 4 -> 2 -> 5 -> 4 -> 3 -> 5 -> 1 -> 3

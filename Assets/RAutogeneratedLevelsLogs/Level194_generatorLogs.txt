@@ -1,0 +1,17 @@
+Level: 194
+Scheme: LevelScheme10 (#10)
+Seed: -1503685683
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 3/150
+Решаемых раскладок найдено: 1
+Количество ходов: 15
+Статус: В ДИАПАЗОНЕ
+5 -> 6 -> 4 -> 5 -> 1 -> 4 -> 3 -> 1 -> 2 -> 3 -> 2 -> 6 -> 3 -> 2 -> 3 -> 6 -> 2 -> 3 -> 4 -> 2 -> 1 -> 4 -> 5 -> 1 -> 5 -> 6 -> 1 -> 5 -> 4 -> 1

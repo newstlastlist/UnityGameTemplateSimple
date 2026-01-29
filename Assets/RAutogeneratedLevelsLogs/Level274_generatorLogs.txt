@@ -1,0 +1,17 @@
+Level: 274
+Scheme: LevelScheme2 (#2)
+Seed: 1509089382
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 1/150
+Решаемых раскладок найдено: 1
+Количество ходов: 10
+Статус: В ДИАПАЗОНЕ
+1 -> 4 -> 1 -> 5 -> 2 -> 5 -> 1 -> 2 -> 3 -> 4 -> 3 -> 5 -> 3 -> 4 -> 2 -> 3 -> 2 -> 5 -> 3 -> 2

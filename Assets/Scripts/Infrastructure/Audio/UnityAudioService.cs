@@ -13,14 +13,14 @@ namespace Infrastructure.Audio
         PlaySfx(AudioId id)
         SetMuted(bool), SetMasterVolume(float), SetMusicVolume(float), SetSfxVolume(float)
         Свойства IsMuted, MasterVolume, MusicVolume, SfxVolume
-        AudioDatabase (Shared, ScriptableObject): карта AudioId -> AudioClip. Инициализируется один раз, хранит кэш. В GameApp добавлен сериализуемый референс.
+        AudioDatabase (Shared, ScriptableObject): карта AudioId -> AudioClip. Инициализируется один раз, хранит кэш. В BootstrapEntryPoint добавлен сериализуемый референс.
         UnityAudioService (Infrastructure): 2 AudioSource (music/sfx) на [AudioService] GameObject в DontDestroyOnLoad. Управляет громкостями и воспроизведением.
         PlayerPrefsAudioSettingsService (Infrastructure): загрузка/сохранение настроек громкости/мута.
-        GameApp (App): регистрирует IAudioService, грузит настройки из PlayerPrefs и сохраняет их при завершении.
+        BootstrapEntryPoint (App): регистрирует IAudioService, грузит настройки из PlayerPrefs и сохраняет их при завершении.
     Что нужно сделать в редакторе:
         Создать ScriptableObject AudioDatabase в Project: Create → Audio → Audio Database.
         Заполнить список клипов и их AudioId.
-        Присвоить созданный AudioDatabase в поле _audioDatabase у GameApp в сцене.
+        Присвоить созданный AudioDatabase в поле _audioDatabase у BootstrapEntryPoint в bootstrap-сцене.
     Мини-FAQ:
         Включить музыку: Services.Get<IAudioService>().PlayMusic(AudioId.MainMenuMusic, true).
         Проиграть SFX: Services.Get<IAudioService>().PlaySfx(AudioId.ClickSfx).

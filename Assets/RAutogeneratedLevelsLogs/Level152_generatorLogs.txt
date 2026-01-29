@@ -1,0 +1,17 @@
+Level: 152
+Scheme: LevelScheme14 (#14)
+Seed: -559475363
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 38
+Количество ходов: 14
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+1 -> 6 -> 4 -> 6 -> 5 -> 6 -> 3 -> 5 -> 2 -> 3 -> 8 -> 4 -> 2 -> 8 -> 1 -> 2 -> 8 -> 1 -> 3 -> 8 -> 5 -> 3 -> 7 -> 5 -> 7 -> 1 -> 5 -> 7

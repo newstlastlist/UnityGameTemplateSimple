@@ -1,0 +1,20 @@
+Level: 3
+Scheme: LevelScheme4 (#4)
+Seed: 1059274292
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 12..18 (inclusive)
+LastAttemptsUsed: 481
+
+---- How To Complete Level ----
+Попыток: 481/500
+Решаемых раскладок найдено: 480
+Целевой диапазон ходов: 12..18 (включительно)
+Остановка по таймауту: 10 сек.
+Количество ходов: 11
+Статус: ВНЕ ДИАПАЗОНА (ближайший найденный вариант)
+1 -> 5 -> 1 -> 6 -> 4 -> 5 -> 4 -> 6 -> 1 -> 4 -> 2 -> 1 -> 2 -> 6 -> 1 -> 2 -> 3 -> 2 -> 3 -> 5 -> 4 -> 3

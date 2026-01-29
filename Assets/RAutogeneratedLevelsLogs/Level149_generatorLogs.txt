@@ -1,0 +1,18 @@
+Level: 149
+Scheme: LevelScheme19 (#19)
+Seed: -1441847691
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 57/150
+Решаемых раскладок найдено: 6
+Остановка по таймауту: 15 сек.
+Количество ходов: 11
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+3 -> 7 -> 4 -> 7 -> 6 -> 7 -> 6 -> 4 -> 3 -> 6 -> 2 -> 3 -> 1 -> 2 -> 5 -> 1 -> 5 -> 3 -> 2 -> 5 -> 6 -> 2

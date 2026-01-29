@@ -1,0 +1,17 @@
+Level: 388
+Scheme: LevelScheme16 (#16)
+Seed: 1242059169
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 1/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 5 -> 2 -> 6 -> 7 -> 2 -> 2 -> 5 -> 3 -> 2 -> 3 -> 7 -> 1 -> 3 -> 7 -> 1 -> 2 -> 7 -> 4 -> 6 -> 4 -> 1 -> 6 -> 4

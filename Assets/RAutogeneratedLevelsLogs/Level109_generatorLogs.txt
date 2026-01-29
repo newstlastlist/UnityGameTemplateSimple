@@ -1,0 +1,17 @@
+Level: 109
+Scheme: LevelScheme5 (#5)
+Seed: -51716233
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 3/150
+Решаемых раскладок найдено: 1
+Количество ходов: 11
+Статус: В ДИАПАЗОНЕ
+3 -> 6 -> 2 -> 7 -> 3 -> 7 -> 5 -> 3 -> 4 -> 3 -> 4 -> 7 -> 4 -> 2 -> 2 -> 5 -> 1 -> 2 -> 2 -> 6 -> 1 -> 2

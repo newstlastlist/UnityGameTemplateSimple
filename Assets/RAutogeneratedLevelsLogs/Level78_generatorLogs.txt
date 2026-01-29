@@ -1,0 +1,17 @@
+Level: 78
+Scheme: LevelScheme18 (#18)
+Seed: -1351892604
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 59
+Количество ходов: 11
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+3 -> 5 -> 2 -> 3 -> 1 -> 2 -> 6 -> 3 -> 7 -> 1 -> 6 -> 7 -> 4 -> 6 -> 4 -> 5 -> 7 -> 4 -> 2 -> 7 -> 6 -> 2

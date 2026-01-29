@@ -1,0 +1,17 @@
+Level: 510
+Scheme: LevelScheme18 (#18)
+Seed: -780530514
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 45
+Количество ходов: 12
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+4 -> 5 -> 2 -> 4 -> 7 -> 5 -> 2 -> 7 -> 1 -> 2 -> 1 -> 5 -> 3 -> 1 -> 7 -> 3 -> 2 -> 7 -> 4 -> 2 -> 6 -> 2 -> 6 -> 4

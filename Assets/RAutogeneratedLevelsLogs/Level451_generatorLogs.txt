@@ -1,0 +1,17 @@
+Level: 451
+Scheme: LevelScheme14 (#14)
+Seed: 2105999522
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 38
+Количество ходов: 15
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+4 -> 6 -> 5 -> 4 -> 7 -> 6 -> 2 -> 7 -> 2 -> 5 -> 8 -> 6 -> 8 -> 2 -> 3 -> 8 -> 3 -> 2 -> 4 -> 3 -> 5 -> 4 -> 1 -> 5 -> 1 -> 8 -> 7 -> 1 -> 5 -> 7

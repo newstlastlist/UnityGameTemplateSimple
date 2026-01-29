@@ -1,0 +1,17 @@
+Level: 192
+Scheme: LevelScheme6 (#6)
+Seed: 840354343
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 6/150
+Решаемых раскладок найдено: 1
+Количество ходов: 16
+Статус: В ДИАПАЗОНЕ
+2 -> 6 -> 1 -> 2 -> 5 -> 1 -> 4 -> 6 -> 4 -> 5 -> 2 -> 4 -> 2 -> 6 -> 4 -> 2 -> 6 -> 4 -> 3 -> 6 -> 5 -> 3 -> 5 -> 6 -> 3 -> 5 -> 1 -> 3 -> 1 -> 6 -> 3 -> 1

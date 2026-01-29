@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Infrastructure.Resources;
 using UI.Popup.PrivacySettingsPopup;
+using UI.Popup.ResetLevelPopup;
 using UnityEngine;
 
 namespace UI.Popup
@@ -46,6 +47,7 @@ namespace UI.Popup
             switch (popupId)
             {
                 case PopupId.PrivacySettings: return new PrivacySettingsPopupPresenter((PrivacySettingsPopupView)view);
+                case PopupId.ResetLevelPopup: return new ResetLevelPopupPresenter((ResetLevelPopupView)view);
                 default:
                     Debug.LogError($"Popup Id {popupId} not supported");
                     return null;

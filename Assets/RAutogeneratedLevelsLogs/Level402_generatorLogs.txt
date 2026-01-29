@@ -1,0 +1,17 @@
+Level: 402
+Scheme: LevelScheme16 (#16)
+Seed: 931766719
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 42/150
+Решаемых раскладок найдено: 40
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+2 -> 5 -> 2 -> 6 -> 3 -> 5 -> 2 -> 3 -> 7 -> 5 -> 4 -> 7 -> 4 -> 6 -> 1 -> 4 -> 1 -> 6 -> 3 -> 1 -> 7 -> 3 -> 4 -> 7

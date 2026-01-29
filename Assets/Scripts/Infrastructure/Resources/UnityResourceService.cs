@@ -60,5 +60,28 @@ namespace Infrastructure.Resources
             }
             return request.asset as GameObject;
         }
+
+        public Sprite LoadSprite(string resourcesPath)
+        {
+            if (string.IsNullOrWhiteSpace(resourcesPath))
+            {
+                return null;
+            }
+            return UnityEngine.Resources.Load<Sprite>(resourcesPath);
+        }
+
+        public async Task<Sprite> LoadSpriteAsync(string resourcesPath)
+        {
+            if (string.IsNullOrWhiteSpace(resourcesPath))
+            {
+                return null;
+            }
+            var request = UnityEngine.Resources.LoadAsync<Sprite>(resourcesPath);
+            while (!request.isDone)
+            {
+                await Task.Yield();
+            }
+            return request.asset as Sprite;
+        }
     }
 }

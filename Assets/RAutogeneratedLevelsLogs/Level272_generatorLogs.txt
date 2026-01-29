@@ -1,0 +1,17 @@
+Level: 272
+Scheme: LevelScheme14 (#14)
+Seed: 1780425522
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 28
+Количество ходов: 12
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+7 -> 6 -> 1 -> 6 -> 8 -> 1 -> 3 -> 7 -> 4 -> 7 -> 2 -> 4 -> 5 -> 3 -> 8 -> 2 -> 4 -> 8 -> 5 -> 4 -> 1 -> 5 -> 4 -> 1

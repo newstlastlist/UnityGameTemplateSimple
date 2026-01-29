@@ -1,0 +1,19 @@
+Level: 47
+Scheme: LevelScheme18 (#18)
+Seed: 1035975976
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 18..18 (inclusive)
+LastAttemptsUsed: 500
+
+---- How To Complete Level ----
+Попыток: 500/500
+Решаемых раскладок найдено: 165
+Целевой диапазон ходов: 18..18 (включительно)
+Количество ходов: 15
+Статус: ВНЕ ДИАПАЗОНА (ближайший найденный вариант)
+6 -> 5 -> 3 -> 6 -> 7 -> 5 -> 7 -> 3 -> 5 -> 7 -> 3 -> 5 -> 1 -> 5 -> 4 -> 3 -> 1 -> 4 -> 3 -> 1 -> 4 -> 3 -> 2 -> 3 -> 2 -> 4 -> 6 -> 2 -> 4 -> 6

@@ -1,0 +1,18 @@
+Level: 408
+Scheme: LevelScheme8 (#8)
+Seed: 1129027503
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 72/150
+Решаемых раскладок найдено: 5
+Количество ходов: 19
+Статус: В ДИАПАЗОНЕ
+4 -> 8 -> 2 -> 4 -> 2 -> 8 -> 1 -> 2 -> 6 -> 2 -> 6 -> 8 -> 4 -> 6 -> 1 -> 4 -> 3 -> 1 -> 3 -> 4 -> 1 -> 3 -> 8 -> 1 -> 7 -> 8 -> 6 -> 7 -> 4 -> 6 -> 5 -> 4
+ -> 5 -> 8 -> 2 -> 5 -> 4 -> 2

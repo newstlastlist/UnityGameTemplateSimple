@@ -11,7 +11,7 @@ namespace App
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
         }
 
-        public void Show(ScreenId id)
+        public void Show(PanelType id)
         {
             _controller.Show(id);
         }

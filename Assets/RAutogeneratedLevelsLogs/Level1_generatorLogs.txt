@@ -1,0 +1,17 @@
+Level: 1
+Scheme: LevelScheme1 (#1)
+Seed: -437345
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 120
+SolverMaxNodes: 12000
+PreferNonTrivial: True
+TimeOutSeconds: 0
+TargetSolutionMovesRange: 0..0 (inclusive)
+LastAttemptsUsed: 1
+
+---- How To Complete Level ----
+Попыток: 1/120
+Решаемых раскладок найдено: 1
+Количество ходов: 4
+1 -> 3 -> 2 -> 3 -> 2 -> 1 -> 3 -> 2

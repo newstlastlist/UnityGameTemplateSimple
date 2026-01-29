@@ -1,0 +1,17 @@
+Level: 348
+Scheme: LevelScheme14 (#14)
+Seed: -1376696450
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 45
+Количество ходов: 14
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+5 -> 6 -> 7 -> 5 -> 8 -> 5 -> 8 -> 6 -> 1 -> 8 -> 2 -> 1 -> 7 -> 2 -> 3 -> 7 -> 4 -> 3 -> 4 -> 7 -> 1 -> 4 -> 3 -> 1 -> 2 -> 3 -> 8 -> 2

@@ -1,5 +1,22 @@
 {
   "dependencies": {
+    "com.adjust.sdk": {
+      "version": "https://github.com/adjust/unity_sdk.git?path=Assets/Adjust",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b18785709386029c424f61917b9315a97ad1d543"
+    },
+    "com.coffee.ui-particle": {
+      "version": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "hash": "04c1ca72cde82318e11eb1281dc4c3d314a2e68c"
+    },
     "com.coplaydev.unity-mcp": {
       "version": "https://github.com/CoplayDev/unity-mcp.git?path=/UnityMcpBridge",
       "depth": 0,
@@ -8,6 +25,13 @@
         "com.unity.nuget.newtonsoft-json": "3.0.2"
       },
       "hash": "f6796e61f7163daa9b9546f99f787e79a35edb36"
+    },
+    "com.google.external-dependency-manager": {
+      "version": "https://github.com/googlesamples/unity-jar-resolver.git?path=upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6eee66190fb6d7182518cc3b41e3919e054699b6"
     },
     "com.unity.2d.animation": {
       "version": "12.0.2",
@@ -248,7 +272,7 @@
       }
     },
     "com.unity.test-framework": {
-      "version": "1.5.1",
+      "version": "1.6.0",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
@@ -297,6 +321,15 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "io.appmetrica.analytics": {
+      "version": "https://github.com/appmetrica/appmetrica-unity-plugin.git#v6.7.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.183"
+      },
+      "hash": "493dce822b0588da81c102db1a21648daebf7aa8"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

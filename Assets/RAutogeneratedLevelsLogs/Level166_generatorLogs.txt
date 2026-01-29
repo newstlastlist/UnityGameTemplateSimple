@@ -1,0 +1,17 @@
+Level: 166
+Scheme: LevelScheme14 (#14)
+Seed: 1031149228
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 28
+Количество ходов: 15
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+4 -> 6 -> 5 -> 6 -> 8 -> 6 -> 8 -> 5 -> 8 -> 4 -> 5 -> 8 -> 3 -> 5 -> 2 -> 3 -> 2 -> 8 -> 4 -> 2 -> 5 -> 4 -> 1 -> 5 -> 3 -> 1 -> 7 -> 5 -> 7 -> 3

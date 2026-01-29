@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI.Settings
 {
-    public sealed class SettingsView : MonoBehaviour
+    public sealed class SettingsView : UI.PanelBase
     {
         [SerializeField] private Button _termsButton;
         [SerializeField] private Button _privacyButton;
@@ -141,6 +141,11 @@ namespace UI.Settings
         private void OnCloseClickedInternalHandler()
         {
             OnCloseClicked?.Invoke();
+        }
+
+        public override void OnOpenHandler()
+        {
+            // Пока ничего не требуется при открытии экрана настроек
         }
     }
 }

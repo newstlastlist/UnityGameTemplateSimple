@@ -1,0 +1,17 @@
+Level: 403
+Scheme: LevelScheme10 (#10)
+Seed: -403603500
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 2/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+2 -> 6 -> 3 -> 2 -> 5 -> 3 -> 5 -> 2 -> 5 -> 6 -> 3 -> 5 -> 4 -> 3 -> 4 -> 5 -> 4 -> 6 -> 1 -> 4 -> 3 -> 1 -> 4 -> 3

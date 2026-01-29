@@ -1,0 +1,17 @@
+Level: 253
+Scheme: LevelScheme16 (#16)
+Seed: -1998259347
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 2/150
+Решаемых раскладок найдено: 2
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 5 -> 2 -> 6 -> 7 -> 2 -> 7 -> 5 -> 3 -> 7 -> 4 -> 6 -> 1 -> 4 -> 2 -> 1 -> 7 -> 2 -> 3 -> 1 -> 4 -> 3 -> 6 -> 4

@@ -1,0 +1,17 @@
+Level: 281
+Scheme: LevelScheme19 (#19)
+Seed: -1865337924
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 10/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+3 -> 7 -> 1 -> 8 -> 1 -> 7 -> 2 -> 8 -> 5 -> 2 -> 4 -> 3 -> 6 -> 4 -> 4 -> 1 -> 2 -> 4 -> 3 -> 2 -> 6 -> 5 -> 8 -> 6

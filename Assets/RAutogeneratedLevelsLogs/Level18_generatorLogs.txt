@@ -1,0 +1,14 @@
+Level: 18
+Scheme: LevelScheme14 (#14)
+Seed: 2116538458
+Words %: Word50
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 20..21 (inclusive)
+LastAttemptsUsed: 0
+
+---- How To Complete Level ----
+

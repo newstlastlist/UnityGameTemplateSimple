@@ -1,0 +1,18 @@
+Level: 255
+Scheme: LevelScheme8 (#8)
+Seed: 1602996809
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 6/150
+Решаемых раскладок найдено: 1
+Количество ходов: 20
+Статус: В ДИАПАЗОНЕ
+3 -> 8 -> 6 -> 8 -> 3 -> 6 -> 8 -> 3 -> 6 -> 8 -> 5 -> 6 -> 4 -> 8 -> 4 -> 5 -> 4 -> 8 -> 2 -> 4 -> 1 -> 2 -> 1 -> 4 -> 2 -> 1 -> 7 -> 2 -> 7 -> 4 -> 7 -> 2
+ -> 6 -> 7 -> 2 -> 6 -> 1 -> 2 -> 5 -> 1

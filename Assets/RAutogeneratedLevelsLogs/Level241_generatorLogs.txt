@@ -1,0 +1,17 @@
+Level: 241
+Scheme: LevelScheme14 (#14)
+Seed: -2094447375
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 33
+Количество ходов: 13
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+8 -> 6 -> 7 -> 6 -> 5 -> 7 -> 7 -> 8 -> 4 -> 7 -> 3 -> 4 -> 5 -> 3 -> 4 -> 5 -> 3 -> 4 -> 2 -> 3 -> 1 -> 2 -> 1 -> 7 -> 3 -> 1

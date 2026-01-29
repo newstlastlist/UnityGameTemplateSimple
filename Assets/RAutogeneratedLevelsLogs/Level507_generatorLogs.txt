@@ -1,0 +1,17 @@
+Level: 507
+Scheme: LevelScheme19 (#19)
+Seed: 204429238
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 2/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+5 -> 7 -> 3 -> 8 -> 2 -> 7 -> 2 -> 8 -> 1 -> 5 -> 1 -> 8 -> 4 -> 1 -> 4 -> 3 -> 2 -> 4 -> 6 -> 4 -> 6 -> 5 -> 1 -> 6

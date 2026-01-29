@@ -1,0 +1,18 @@
+Level: 137
+Scheme: LevelScheme7 (#7)
+Seed: -1057218114
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 38/150
+Решаемых раскладок найдено: 5
+Количество ходов: 20
+Статус: В ДИАПАЗОНЕ
+3 -> 7 -> 2 -> 3 -> 6 -> 2 -> 6 -> 7 -> 4 -> 6 -> 4 -> 7 -> 3 -> 4 -> 2 -> 3 -> 5 -> 2 -> 1 -> 5 -> 1 -> 2 -> 1 -> 6 -> 2 -> 1 -> 7 -> 2 -> 6 -> 7 -> 4 -> 6
+ -> 3 -> 4 -> 5 -> 3 -> 5 -> 7 -> 3 -> 5

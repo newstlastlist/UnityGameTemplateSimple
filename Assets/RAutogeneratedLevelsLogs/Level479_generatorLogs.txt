@@ -1,0 +1,17 @@
+Level: 479
+Scheme: LevelScheme19 (#19)
+Seed: -539849507
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 44/150
+Решаемых раскладок найдено: 4
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 7 -> 2 -> 8 -> 6 -> 1 -> 5 -> 6 -> 6 -> 7 -> 1 -> 6 -> 3 -> 5 -> 5 -> 8 -> 3 -> 2 -> 1 -> 5 -> 4 -> 5 -> 4 -> 3

@@ -1,0 +1,17 @@
+Level: 447
+Scheme: LevelScheme19 (#19)
+Seed: 580886533
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 8/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+5 -> 7 -> 1 -> 8 -> 3 -> 7 -> 2 -> 8 -> 2 -> 3 -> 3 -> 5 -> 6 -> 8 -> 4 -> 6 -> 1 -> 4 -> 6 -> 1 -> 2 -> 3 -> 3 -> 6

@@ -1,0 +1,18 @@
+Level: 122
+Scheme: LevelScheme8 (#8)
+Seed: 258101107
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 125/150
+Решаемых раскладок найдено: 6
+Количество ходов: 20
+Статус: В ДИАПАЗОНЕ
+6 -> 8 -> 4 -> 8 -> 1 -> 4 -> 2 -> 1 -> 7 -> 2 -> 7 -> 6 -> 4 -> 7 -> 2 -> 4 -> 3 -> 2 -> 3 -> 6 -> 3 -> 8 -> 2 -> 3 -> 1 -> 2 -> 5 -> 1 -> 5 -> 3 -> 2 -> 5
+ -> 1 -> 2 -> 6 -> 1 -> 7 -> 6 -> 2 -> 7

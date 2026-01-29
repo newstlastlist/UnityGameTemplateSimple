@@ -1,0 +1,17 @@
+Level: 421
+Scheme: LevelScheme14 (#14)
+Seed: 1481481963
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 38
+Количество ходов: 15
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+1 -> 6 -> 3 -> 6 -> 2 -> 3 -> 5 -> 2 -> 7 -> 6 -> 8 -> 5 -> 7 -> 8 -> 3 -> 7 -> 1 -> 3 -> 5 -> 1 -> 4 -> 1 -> 4 -> 5 -> 8 -> 4 -> 2 -> 8 -> 5 -> 2

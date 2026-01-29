@@ -1,52 +1,62 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UI;
 
 namespace App
 {
     public sealed class ScreenController : MonoBehaviour
     {
-        [SerializeField] private GameObject _mainMenuPanel;
-        [SerializeField] private GameObject _gamePanel;
-        [SerializeField] private GameObject _winPanel;
-        [SerializeField] private GameObject _settingsPanel;
+        [SerializeField] private List<PanelIdContainer> _panels = new List<PanelIdContainer>();
 
-        private readonly Dictionary<ScreenId, GameObject> _panelsById = new Dictionary<ScreenId, GameObject>();
+        private readonly Dictionary<PanelType, PanelBase> _panelsById = new Dictionary<PanelType, PanelBase>();
 
-        private readonly Dictionary<ScreenId, Dictionary<Type, Component>> _viewCacheByScreen =
-            new Dictionary<ScreenId, Dictionary<Type, Component>>();
+        private readonly Dictionary<PanelType, Dictionary<Type, Component>> _viewCacheByScreen =
+            new Dictionary<PanelType, Dictionary<Type, Component>>();
 
-        public event Action<ScreenId> OnScreenShown;
+        public event Action<PanelType> OnScreenShown;
 
         private void Awake()
         {
             FillPanelsDict();
         }
 
-        public void Show(ScreenId id)
+        public void Show(PanelType id)
         {
             if (_panelsById.Count == 0)
             {
                 FillPanelsDict();
             }
 
-            SetActiveForPanel(ScreenId.Main, id == ScreenId.Main);
-            SetActiveForPanel(ScreenId.Game, id == ScreenId.Game);
-            SetActiveForPanel(ScreenId.Win,  id == ScreenId.Win);
-            SetActiveForPanel(ScreenId.Settings,  id == ScreenId.Settings);
+            // Settings — оверлей: не выключаем текущий экран (Main/Game/Win), просто показываем Settings поверх.
+            if (id == PanelType.Settings)
+            {
+                SetActiveForPanel(PanelType.Settings, true);
+                OnScreenShown?.Invoke(id);
+                return;
+            }
+
+            foreach (var kv in _panelsById)
+            {
+                SetActiveForPanel(kv.Key, kv.Key.Equals(id));
+            }
 
             OnScreenShown?.Invoke(id);
         }
 
-        private void SetActiveForPanel(ScreenId id, bool isActive)
+        private void SetActiveForPanel(PanelType id, bool isActive)
         {
-            if (_panelsById.TryGetValue(id, out GameObject panel) && panel != null)
+            if (_panelsById.TryGetValue(id, out PanelBase panel) && panel != null)
             {
-                panel.SetActive(isActive);
+                panel.Show(isActive);
+                if (isActive)
+                {
+                    panel.OnOpenHandler();
+                }
             }
         }
 
-        public T GetViewOnPanel<T>(ScreenId id) where T : Component
+        public T GetViewOnPanel<T>(PanelType id) where T : Component
         {
             if (_panelsById.Count == 0)
             {
@@ -66,7 +76,7 @@ namespace App
                 _viewCacheByScreen[id] = typeMap;
             }
 
-            if (!_panelsById.TryGetValue(id, out GameObject panel) || panel == null)
+            if (!_panelsById.TryGetValue(id, out PanelBase panel) || panel == null)
             {
                 return null;
             }
@@ -86,7 +96,7 @@ namespace App
             _viewCacheByScreen.Clear();
         }
 
-        public void InvalidateViewCache(ScreenId id)
+        public void InvalidateViewCache(PanelType id)
         {
             _viewCacheByScreen.Remove(id);
         }
@@ -95,29 +105,25 @@ namespace App
         {
             _panelsById.Clear();
 
-            if (_mainMenuPanel != null)
+            for (int i = 0; i < _panels.Count; i++)
             {
-                _panelsById[ScreenId.Main] = _mainMenuPanel;
-            }
-
-            if (_gamePanel != null)
-            {
-                _panelsById[ScreenId.Game] = _gamePanel;
-            }
-
-            if (_winPanel != null)
-            {
-                _panelsById[ScreenId.Win] = _winPanel;
-            }
-
-            if (_settingsPanel != null)
-            {
-                _panelsById[ScreenId.Settings] = _settingsPanel;
+                var c = _panels[i];
+                if (c != null && c.Panel != null)
+                {
+                    _panelsById[c.Type] = c.Panel;
+                }
             }
         }
     }
 
-    public enum ScreenId
+    [Serializable]
+    public sealed class PanelIdContainer
+    {
+        public PanelType Type;
+        public PanelBase Panel;
+    }
+
+    public enum PanelType
     {
         Main,
         Game,

@@ -1,0 +1,17 @@
+Level: 219
+Scheme: LevelScheme4 (#4)
+Seed: 1981289700
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 1/150
+Решаемых раскладок найдено: 1
+Количество ходов: 9
+Статус: В ДИАПАЗОНЕ
+2 -> 5 -> 2 -> 6 -> 2 -> 5 -> 4 -> 5 -> 3 -> 4 -> 4 -> 6 -> 1 -> 4 -> 1 -> 3 -> 4 -> 1

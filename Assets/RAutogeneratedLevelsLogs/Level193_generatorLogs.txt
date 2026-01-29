@@ -1,0 +1,18 @@
+Level: 193
+Scheme: LevelScheme19 (#19)
+Seed: -1385904567
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 59/150
+Решаемых раскладок найдено: 5
+Остановка по таймауту: 15 сек.
+Количество ходов: 10
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+2 -> 7 -> 4 -> 8 -> 3 -> 8 -> 5 -> 7 -> 3 -> 4 -> 6 -> 3 -> 5 -> 6 -> 1 -> 2 -> 1 -> 4 -> 2 -> 1

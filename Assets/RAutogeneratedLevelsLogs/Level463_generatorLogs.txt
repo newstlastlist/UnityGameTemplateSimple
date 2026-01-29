@@ -1,0 +1,17 @@
+Level: 463
+Scheme: LevelScheme6 (#6)
+Seed: -1584132910
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 2/150
+Решаемых раскладок найдено: 1
+Количество ходов: 15
+Статус: В ДИАПАЗОНЕ
+1 -> 6 -> 5 -> 1 -> 2 -> 6 -> 2 -> 5 -> 4 -> 2 -> 3 -> 4 -> 3 -> 6 -> 4 -> 3 -> 1 -> 4 -> 5 -> 1 -> 5 -> 6 -> 2 -> 5 -> 4 -> 2 -> 1 -> 4 -> 5 -> 1

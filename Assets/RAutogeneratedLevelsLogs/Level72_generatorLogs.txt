@@ -1,0 +1,17 @@
+Level: 72
+Scheme: LevelScheme16 (#16)
+Seed: 1832847425
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 12/150
+Решаемых раскладок найдено: 11
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 5 -> 3 -> 1 -> 3 -> 6 -> 2 -> 5 -> 4 -> 5 -> 2 -> 6 -> 2 -> 3 -> 7 -> 3 -> 7 -> 6 -> 4 -> 7 -> 1 -> 4 -> 7 -> 1

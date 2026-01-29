@@ -1,0 +1,18 @@
+Level: 436
+Scheme: LevelScheme8 (#8)
+Seed: 1519994957
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 15/150
+Решаемых раскладок найдено: 1
+Количество ходов: 19
+Статус: В ДИАПАЗОНЕ
+3 -> 8 -> 2 -> 3 -> 4 -> 8 -> 6 -> 8 -> 1 -> 6 -> 1 -> 4 -> 2 -> 1 -> 7 -> 2 -> 7 -> 8 -> 7 -> 1 -> 4 -> 7 -> 2 -> 4 -> 3 -> 2 -> 7 -> 3 -> 1 -> 7 -> 6 -> 1
+ -> 6 -> 7 -> 5 -> 6 -> 1 -> 5

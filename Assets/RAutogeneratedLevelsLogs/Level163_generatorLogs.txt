@@ -1,0 +1,17 @@
+Level: 163
+Scheme: LevelScheme10 (#10)
+Seed: -1597974802
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 1/150
+Решаемых раскладок найдено: 1
+Количество ходов: 14
+Статус: В ДИАПАЗОНЕ
+5 -> 6 -> 3 -> 5 -> 1 -> 3 -> 4 -> 1 -> 2 -> 4 -> 2 -> 6 -> 1 -> 2 -> 1 -> 6 -> 5 -> 1 -> 2 -> 5 -> 4 -> 2 -> 4 -> 1 -> 3 -> 4 -> 2 -> 3

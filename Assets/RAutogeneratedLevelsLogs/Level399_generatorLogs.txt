@@ -1,0 +1,17 @@
+Level: 399
+Scheme: LevelScheme2 (#2)
+Seed: 1961245123
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 1/150
+Решаемых раскладок найдено: 1
+Количество ходов: 8
+Статус: В ДИАПАЗОНЕ
+1 -> 4 -> 3 -> 1 -> 2 -> 3 -> 2 -> 4 -> 2 -> 3 -> 1 -> 2 -> 3 -> 1 -> 4 -> 3

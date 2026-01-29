@@ -1,0 +1,18 @@
+Level: 498
+Scheme: LevelScheme17 (#17)
+Seed: 856594426
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 34/150
+Решаемых раскладок найдено: 1
+Количество ходов: 19
+Статус: В ДИАПАЗОНЕ
+2 -> 8 -> 4 -> 8 -> 3 -> 4 -> 6 -> 3 -> 6 -> 8 -> 5 -> 6 -> 1 -> 5 -> 1 -> 2 -> 7 -> 1 -> 7 -> 6 -> 5 -> 7 -> 4 -> 5 -> 2 -> 4 -> 1 -> 2 -> 7 -> 1 -> 4 -> 7
+ -> 3 -> 4 -> 3 -> 8 -> 4 -> 3

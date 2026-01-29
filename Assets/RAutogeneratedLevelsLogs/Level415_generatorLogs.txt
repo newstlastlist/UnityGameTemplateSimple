@@ -1,0 +1,17 @@
+Level: 415
+Scheme: LevelScheme5 (#5)
+Seed: -1129690954
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 19/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+4 -> 6 -> 1 -> 7 -> 5 -> 4 -> 1 -> 6 -> 1 -> 7 -> 2 -> 5 -> 1 -> 2 -> 3 -> 5 -> 3 -> 7 -> 2 -> 3 -> 4 -> 2 -> 6 -> 4

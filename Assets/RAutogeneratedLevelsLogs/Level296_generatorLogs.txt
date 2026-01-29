@@ -1,0 +1,18 @@
+Level: 296
+Scheme: LevelScheme19 (#19)
+Seed: -146380736
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 59/150
+Решаемых раскладок найдено: 7
+Остановка по таймауту: 15 сек.
+Количество ходов: 11
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+2 -> 7 -> 3 -> 8 -> 1 -> 2 -> 3 -> 7 -> 1 -> 3 -> 4 -> 3 -> 6 -> 4 -> 4 -> 8 -> 5 -> 4 -> 6 -> 5 -> 4 -> 6

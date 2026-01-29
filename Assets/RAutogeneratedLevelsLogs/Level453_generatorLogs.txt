@@ -1,0 +1,18 @@
+Level: 453
+Scheme: LevelScheme17 (#17)
+Seed: 622911901
+Words %: Word75
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 28/150
+Решаемых раскладок найдено: 2
+Количество ходов: 20
+Статус: В ДИАПАЗОНЕ
+7 -> 8 -> 4 -> 7 -> 6 -> 4 -> 6 -> 8 -> 1 -> 6 -> 1 -> 8 -> 4 -> 1 -> 5 -> 4 -> 2 -> 5 -> 2 -> 4 -> 5 -> 2 -> 3 -> 5 -> 3 -> 8 -> 6 -> 3 -> 1 -> 6 -> 2 -> 1
+ -> 7 -> 2 -> 7 -> 3 -> 5 -> 7 -> 2 -> 5

@@ -1,0 +1,17 @@
+Level: 290
+Scheme: LevelScheme5 (#5)
+Seed: -2106807365
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 2/150
+Решаемых раскладок найдено: 1
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+3 -> 6 -> 3 -> 7 -> 2 -> 6 -> 5 -> 6 -> 2 -> 7 -> 2 -> 3 -> 4 -> 2 -> 3 -> 4 -> 1 -> 2 -> 1 -> 7 -> 4 -> 1 -> 5 -> 4

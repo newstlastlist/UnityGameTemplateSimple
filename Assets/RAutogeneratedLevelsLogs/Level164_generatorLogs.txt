@@ -1,0 +1,17 @@
+Level: 164
+Scheme: LevelScheme16 (#16)
+Seed: -114963625
+Words %: Word50
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 2/150
+Решаемых раскладок найдено: 2
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 5 -> 1 -> 6 -> 2 -> 6 -> 4 -> 6 -> 7 -> 4 -> 1 -> 7 -> 3 -> 5 -> 3 -> 2 -> 4 -> 3 -> 7 -> 4 -> 2 -> 7 -> 5 -> 2

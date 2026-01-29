@@ -1,0 +1,17 @@
+Level: 375
+Scheme: LevelScheme14 (#14)
+Seed: -297582694
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 34
+Количество ходов: 13
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+1 -> 6 -> 2 -> 6 -> 7 -> 1 -> 7 -> 2 -> 5 -> 7 -> 8 -> 5 -> 8 -> 1 -> 7 -> 8 -> 5 -> 7 -> 3 -> 7 -> 4 -> 5 -> 4 -> 3 -> 5 -> 4

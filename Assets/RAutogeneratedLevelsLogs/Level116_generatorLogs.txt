@@ -1,0 +1,17 @@
+Level: 116
+Scheme: LevelScheme16 (#16)
+Seed: 931766349
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 12..16 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 9/150
+Решаемых раскладок найдено: 9
+Количество ходов: 12
+Статус: В ДИАПАЗОНЕ
+1 -> 5 -> 3 -> 6 -> 2 -> 3 -> 4 -> 6 -> 7 -> 4 -> 2 -> 7 -> 3 -> 2 -> 6 -> 3 -> 7 -> 5 -> 1 -> 7 -> 4 -> 1 -> 7 -> 4

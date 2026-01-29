@@ -1,0 +1,20 @@
+Level: 53
+Scheme: LevelScheme5 (#5)
+Seed: 1926531186
+Words %: Word100
+MovesCount: 500
+MaxAttempts: 500
+SolverMaxNodes: 15000
+PreferNonTrivial: True
+TimeOutSeconds: 10
+TargetSolutionMovesRange: 20..21 (inclusive)
+LastAttemptsUsed: 40
+
+---- How To Complete Level ----
+Попыток: 40/500
+Решаемых раскладок найдено: 4
+Целевой диапазон ходов: 20..21 (включительно)
+Остановка по таймауту: 10 сек.
+Количество ходов: 14
+Статус: ВНЕ ДИАПАЗОНА (ближайший найденный вариант)
+1 -> 6 -> 2 -> 7 -> 4 -> 2 -> 2 -> 1 -> 4 -> 7 -> 2 -> 4 -> 3 -> 2 -> 5 -> 2 -> 5 -> 7 -> 4 -> 5 -> 2 -> 4 -> 3 -> 6 -> 3 -> 5 -> 6 -> 3

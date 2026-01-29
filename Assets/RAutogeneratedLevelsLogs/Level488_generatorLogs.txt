@@ -1,0 +1,17 @@
+Level: 488
+Scheme: LevelScheme5 (#5)
+Seed: 959245765
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 0..0 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 4/150
+Решаемых раскладок найдено: 1
+Количество ходов: 13
+Статус: В ДИАПАЗОНЕ
+1 -> 6 -> 2 -> 7 -> 3 -> 1 -> 3 -> 6 -> 4 -> 1 -> 4 -> 7 -> 3 -> 4 -> 5 -> 4 -> 2 -> 5 -> 5 -> 3 -> 5 -> 1 -> 4 -> 5 -> 3 -> 4

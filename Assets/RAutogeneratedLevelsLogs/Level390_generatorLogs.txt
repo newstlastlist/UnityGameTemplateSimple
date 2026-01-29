@@ -1,0 +1,17 @@
+Level: 390
+Scheme: LevelScheme14 (#14)
+Seed: 371218976
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 40
+Количество ходов: 13
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+1 -> 6 -> 2 -> 6 -> 4 -> 6 -> 2 -> 4 -> 1 -> 2 -> 7 -> 1 -> 3 -> 7 -> 5 -> 7 -> 3 -> 5 -> 2 -> 3 -> 4 -> 2 -> 8 -> 2 -> 8 -> 4

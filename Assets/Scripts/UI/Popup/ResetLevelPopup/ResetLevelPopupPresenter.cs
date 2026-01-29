@@ -1,4 +1,7 @@
 using System;
+using Shared;
+using App;
+using Infrastructure;
 
 namespace UI.Popup.ResetLevelPopup
 {
@@ -25,18 +28,17 @@ namespace UI.Popup.ResetLevelPopup
 
         private void OnConfirmResetClickedHandler()
         {
-            // Логика будет добавлена позднее
+            var progress = Services.Get<IProgressService>();
+            progress.ResetWinStreak();
+            _view.Close();
+            Services.Get<IScreenNavigator>().Show(PanelType.Game);
         }
 
         private void OnCancelResetClickedHandler()
         {
-            // Логика будет добавлена позднее
+            _view.Close();
         }
     }
 }
-
-
-
-
 
 

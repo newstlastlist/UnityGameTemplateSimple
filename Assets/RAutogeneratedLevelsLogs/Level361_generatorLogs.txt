@@ -1,0 +1,17 @@
+Level: 361
+Scheme: LevelScheme14 (#14)
+Seed: -293660366
+Words %: Word25
+MovesCount: 120
+MaxAttempts: 150
+SolverMaxNodes: 15000
+PreferNonTrivial: False
+TimeOutSeconds: 15
+TargetSolutionMovesRange: 18..20 (inclusive)
+
+---- How To Complete Level ----
+Попыток: 150/150
+Решаемых раскладок найдено: 31
+Количество ходов: 12
+Статус: ВНЕ ДИАПАЗОНА (использован fallback)
+5 -> 6 -> 3 -> 6 -> 8 -> 3 -> 3 -> 5 -> 1 -> 3 -> 7 -> 3 -> 4 -> 7 -> 8 -> 1 -> 7 -> 8 -> 1 -> 7 -> 2 -> 1 -> 4 -> 2
