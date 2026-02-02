@@ -2,8 +2,8 @@
 using AdjustSdk;
 using Io.AppMetrica;
 using Shared;
+using Infrastructure.Settings;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace WS.Core.SDK.AppLovin
 {
@@ -23,12 +23,17 @@ namespace WS.Core.SDK.AppLovin
 
     public sealed class AppLovinMaxAdService : MonoBehaviour
     {
-        private const string _REWARDED_AD_UNIT_ID = "31f35e4e80be7900";
-        private const string _INTERSTITIAL_AD_UNIT_ID = "7c35a4420d02e61f";
-        private const string _BANNER_AD_UNIT_ID = "dab80f24e214b0c3";
-        
         private const string _ADJUST_REVENUE_SOURCE = "applovin_max_sdk";
         private const string _REWARDED_DEFAULT_PLACEMENT = "default";
+
+        private string _rewardedAdUnitId;
+        private string _interstitialAdUnitId;
+        private string _bannerAdUnitId;
+
+        private bool _loggedMissingSettingsService;
+        private bool _loggedMissingBannerId;
+        private bool _loggedMissingInterstitialId;
+        private bool _loggedMissingRewardedId;
 
         // Кулдауны интеров:
         // - _generalInterstitialCooldownSeconds: 45 секунд для всех интеров, кроме mid-геймплейного (пункт 6).
@@ -72,6 +77,7 @@ namespace WS.Core.SDK.AppLovin
             Services.Register(this);
             DontDestroyOnLoad(gameObject);
 
+            ReadAdUnitIdsFromProjectConfigsOrLog();
             AttachCallbacks();
             InitializeBanner();
             TryApplyInitialBannerVisibilityFromProjectSettingsInternal();
@@ -165,35 +171,50 @@ namespace WS.Core.SDK.AppLovin
                 return;
             }
 
+            if (!HasBannerIdOrLog())
+            {
+                return;
+            }
+
             _isBannerInitialized = true;
             _isBannerVisible = false;
 
             // Баннер создаётся один раз. Показ/скрытие — через ShowBanner/HideBanner.
-            MaxSdk.CreateBanner(_BANNER_AD_UNIT_ID, MaxSdkBase.BannerPosition.BottomCenter);
-            MaxSdk.StartBannerAutoRefresh(_BANNER_AD_UNIT_ID);
-            MaxSdk.HideBanner(_BANNER_AD_UNIT_ID);
+            MaxSdk.CreateBanner(_bannerAdUnitId, MaxSdkBase.BannerPosition.BottomCenter);
+            MaxSdk.StartBannerAutoRefresh(_bannerAdUnitId);
+            MaxSdk.HideBanner(_bannerAdUnitId);
         }
 
         public void ShowBanner()
         {
+            if (!HasBannerIdOrLog())
+            {
+                return;
+            }
+
             if (!_isBannerInitialized)
             {
                 InitializeBanner();
             }
 
             _isBannerVisible = true;
-            MaxSdk.ShowBanner(_BANNER_AD_UNIT_ID);
+            MaxSdk.ShowBanner(_bannerAdUnitId);
         }
 
         public void HideBanner()
         {
+            if (!HasBannerIdOrLog())
+            {
+                return;
+            }
+
             if (!_isBannerInitialized)
             {
                 return;
             }
 
             _isBannerVisible = false;
-            MaxSdk.HideBanner(_BANNER_AD_UNIT_ID);
+            MaxSdk.HideBanner(_bannerAdUnitId);
         }
 
         private void TryApplyInitialBannerVisibilityFromProjectSettingsInternal()
@@ -245,7 +266,7 @@ namespace WS.Core.SDK.AppLovin
 
         public bool CanShowInterstitial_SDKCondition()
         {
-            return MaxSdk.IsInterstitialReady(_INTERSTITIAL_AD_UNIT_ID);
+            return HasInterstitialIdOrLog() && MaxSdk.IsInterstitialReady(_interstitialAdUnitId);
         }
 
         private bool CanShowInterstitial_GameCondition(bool useMidGameplayCooldown)
@@ -312,9 +333,14 @@ namespace WS.Core.SDK.AppLovin
 
         public void ShowInterstitial()
         {
-            if (!MaxSdk.IsInterstitialReady(_INTERSTITIAL_AD_UNIT_ID))
+            if (!HasInterstitialIdOrLog())
+            {
                 return;
-            MaxSdk.ShowInterstitial(_INTERSTITIAL_AD_UNIT_ID);
+            }
+
+            if (!MaxSdk.IsInterstitialReady(_interstitialAdUnitId))
+                return;
+            MaxSdk.ShowInterstitial(_interstitialAdUnitId);
         }
 
         private void ResetInterstitialCooldowns()
@@ -329,8 +355,9 @@ namespace WS.Core.SDK.AppLovin
         private void TryLoadInterstitial()
         {
             if (_isLoadingInterstitial) return;
+            if (!HasInterstitialIdOrLog()) return;
             _isLoadingInterstitial = true;
-            MaxSdk.LoadInterstitial(_INTERSTITIAL_AD_UNIT_ID);
+            MaxSdk.LoadInterstitial(_interstitialAdUnitId);
         }
 
         private void HandleInterstitialLoaded(string adUnitId, MaxSdkBase.AdInfo info)
@@ -377,7 +404,7 @@ namespace WS.Core.SDK.AppLovin
             _isInterstitialReady = false;
             ScheduleInterstitialReload();
             InvokeInterstitialClosed();
-            Debug.LogWarning("[AppLovin][Interstitial] Display failed – scheduling reload.");
+            DebugLogger.LogWarning("[AppLovin][Interstitial] Display failed – scheduling reload.");
         }
 
         private void InvokeInterstitialClosed()
@@ -396,7 +423,7 @@ namespace WS.Core.SDK.AppLovin
 
         #region Rewarded
 
-        public bool CanShowRewarded_SDKCondition() => MaxSdk.IsRewardedAdReady(_REWARDED_AD_UNIT_ID);
+        public bool CanShowRewarded_SDKCondition() => HasRewardedIdOrLog() && MaxSdk.IsRewardedAdReady(_rewardedAdUnitId);
 
         private void TryLoadRewarded()
         {
@@ -405,8 +432,13 @@ namespace WS.Core.SDK.AppLovin
                 return;
             }
 
+            if (!HasRewardedIdOrLog())
+            {
+                return;
+            }
+
             _isLoadingRewarded = true;
-            MaxSdk.LoadRewardedAd(_REWARDED_AD_UNIT_ID);
+            MaxSdk.LoadRewardedAd(_rewardedAdUnitId);
         }
 
         public bool TryShowRewarded(Action onRewardEarned, Action onClosed, RewardType type, string boosterKey = null)
@@ -439,7 +471,12 @@ namespace WS.Core.SDK.AppLovin
             _lastRewardType = type;
             _isRewardedReady = false;
 
-            MaxSdk.ShowRewardedAd(_REWARDED_AD_UNIT_ID);
+            if (!HasRewardedIdOrLog())
+            {
+                return false;
+            }
+
+            MaxSdk.ShowRewardedAd(_rewardedAdUnitId);
             return true;
         }
 
@@ -540,6 +577,91 @@ namespace WS.Core.SDK.AppLovin
 
         #endregion
 
+        private void ReadAdUnitIdsFromProjectConfigsOrLog()
+        {
+            if (!Services.TryGet<IProjectSettingsService>(out var projectSettings) || projectSettings == null)
+            {
+                if (!_loggedMissingSettingsService)
+                {
+                    _loggedMissingSettingsService = true;
+                    DebugLogger.LogError($"{nameof(AppLovinMaxAdService)}: {nameof(IProjectSettingsService)} not found. MAX ad unit ids must come from ProjectConfigs.");
+                }
+
+                return;
+            }
+
+            _bannerAdUnitId = projectSettings.MaxBannerAdUnitId;
+            _interstitialAdUnitId = projectSettings.MaxInterstitialAdUnitId;
+            _rewardedAdUnitId = projectSettings.MaxRewardedAdUnitId;
+        }
+
+        private bool HasBannerIdOrLog()
+        {
+            if (!string.IsNullOrWhiteSpace(_bannerAdUnitId))
+            {
+                return true;
+            }
+
+            // Lazy refresh (service might be registered later than this MonoBehaviour Awake).
+            ReadAdUnitIdsFromProjectConfigsOrLog();
+            if (!string.IsNullOrWhiteSpace(_bannerAdUnitId))
+            {
+                return true;
+            }
+
+            if (!_loggedMissingBannerId)
+            {
+                _loggedMissingBannerId = true;
+                DebugLogger.LogError($"{nameof(AppLovinMaxAdService)}: MAX Banner Ad Unit Id is empty. Set it in ProjectConfigs.");
+            }
+
+            return false;
+        }
+
+        private bool HasInterstitialIdOrLog()
+        {
+            if (!string.IsNullOrWhiteSpace(_interstitialAdUnitId))
+            {
+                return true;
+            }
+
+            ReadAdUnitIdsFromProjectConfigsOrLog();
+            if (!string.IsNullOrWhiteSpace(_interstitialAdUnitId))
+            {
+                return true;
+            }
+
+            if (!_loggedMissingInterstitialId)
+            {
+                _loggedMissingInterstitialId = true;
+                DebugLogger.LogError($"{nameof(AppLovinMaxAdService)}: MAX Interstitial Ad Unit Id is empty. Set it in ProjectConfigs.");
+            }
+
+            return false;
+        }
+
+        private bool HasRewardedIdOrLog()
+        {
+            if (!string.IsNullOrWhiteSpace(_rewardedAdUnitId))
+            {
+                return true;
+            }
+
+            ReadAdUnitIdsFromProjectConfigsOrLog();
+            if (!string.IsNullOrWhiteSpace(_rewardedAdUnitId))
+            {
+                return true;
+            }
+
+            if (!_loggedMissingRewardedId)
+            {
+                _loggedMissingRewardedId = true;
+                DebugLogger.LogError($"{nameof(AppLovinMaxAdService)}: MAX Rewarded Ad Unit Id is empty. Set it in ProjectConfigs.");
+            }
+
+            return false;
+        }
+
         private void ReportAdjustAndAppmetricaRevenue(MaxSdkBase.AdInfo adInfo)
         {
             if (adInfo == null || adInfo.Revenue <= 0f)
@@ -565,7 +687,7 @@ namespace WS.Core.SDK.AppLovin
             }
             catch (Exception exception)
             {
-                Debug.LogWarning($"[AppLovin][Adjust][Appmetrica] Failed to report revenue: {exception}");
+                DebugLogger.LogWarning($"[AppLovin][Adjust][Appmetrica] Failed to report revenue: {exception}");
             }
         }
     }

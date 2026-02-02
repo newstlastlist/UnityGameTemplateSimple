@@ -13,6 +13,9 @@ namespace Infrastructure.Settings
 		public int RewardedBoosterStartLevel => IsAdsDisabledInternal() ? AdsDisabledStartLevel : (_configs != null ? _configs.RewardedBoosterStartLevel : 1);
 		public string AdjustAppToken => _configs != null ? _configs.AdjustAppToken : string.Empty;
 		public string AppMetricaAppId => _configs != null ? _configs.AppMetricaAppId : string.Empty;
+		public string MaxBannerAdUnitId => _configs != null ? _configs.MaxBannerAdUnitId : string.Empty;
+		public string MaxInterstitialAdUnitId => _configs != null ? _configs.MaxInterstitialAdUnitId : string.Empty;
+		public string MaxRewardedAdUnitId => _configs != null ? _configs.MaxRewardedAdUnitId : string.Empty;
 
 		public ProjectSettingsService(ProjectConfigs configs)
 		{

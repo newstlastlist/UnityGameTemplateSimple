@@ -8,5 +8,8 @@ namespace Infrastructure.Settings
 		int RewardedBoosterStartLevel { get; }
 		string AdjustAppToken { get; }
 		string AppMetricaAppId { get; }
+		string MaxBannerAdUnitId { get; }
+		string MaxInterstitialAdUnitId { get; }
+		string MaxRewardedAdUnitId { get; }
 	}
 }
